@@ -1,418 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>ScriptHub BR — Scripts e Executores</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>ScriptHub BR — Roblox 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root {
-      --bg: #0f0f12;
-      --panel: #15151a;
-      --card: #1b1b22;
-      --text: #eaeaf0;
-      --muted: #a7a7b3;
-      --accent: #6c8cff;
-      --accent2: #ff7a59;
-      --border: #2a2a33;
-      --ok: #4cd97b;
-      --warn: #ffd166;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
-    a { color: var(--accent); text-decoration: none; }
-    header {
-      background: linear-gradient(135deg, #1a1a22, #121219);
-      border-bottom: 1px solid var(--border);
-    }
-    .topbar {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px;
-    }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand .logo {
-      width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: grid; place-items: center; color: #fff; font-weight: 700;
-    }
-    nav ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; }
-    nav a { color: var(--text); opacity: 0.9; }
-    nav a:hover { color: #fff; }
-    .hero {
-      padding: 24px 18px 18px;
-    }
-    .hero h1 { margin: 0 0 8px; font-size: 26px; }
-    .hero p { margin: 0; color: var(--muted); }
-    .bar {
-      display: grid; gap: 10px; grid-template-columns: 1fr 180px 140px auto;
-      padding: 12px 18px; background: var(--panel); border-top: 1px solid var(--border);
-      position: sticky; top: 0; z-index: 10;
-    }
-    .bar input, .bar select, .bar button {
-      padding: 10px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px;
-      background: var(--card); color: var(--text);
-    }
-    .bar button { background: var(--accent); border: none; cursor: pointer; }
-    .bar button:hover { background: #5876e6; }
-    main { padding: 18px; }
-    .section-title { display: flex; align-items: center; justify-content: space-between; margin: 8px 0 14px; }
-    .section-title h2 { margin: 0; font-size: 20px; }
-    .grid {
-      display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    }
-    .card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px;
-    }
-    .card h3 { margin: 0 0 6px; font-size: 18px; }
-    .meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--border); background: #20202a; color: var(--text); }
-    .desc { font-size: 13px; color: var(--muted); margin: 8px 0; }
-    .btns { display: flex; gap: 8px; flex-wrap: wrap; }
-    .btn {
-      padding: 8px 10px; border-radius: 8px; font-size: 13px; border: 1px solid var(--border); background: #20202a; color: var(--text); cursor: pointer;
-    }
-    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .btn.warn { background: #2a2418; border-color: #4a3a1a; color: #ffd9b3; }
-    .notice {
-      background: #1f1f26; border: 1px solid var(--border); border-radius: 12px; padding: 12px; color: var(--muted); font-size: 13px;
-    }
-    .tabs { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-    .tabs button { padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: #20202a; color: var(--text); cursor: pointer; }
-    .tabs button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-    footer { padding: 18px; color: var(--muted); text-align: center; border-top: 1px solid var(--border); }
-    .empty { text-align: center; color: var(--muted); padding: 24px; }
-    .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 16px; }
-    .pagination button { padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: #20202a; color: var(--text); cursor: pointer; }
-    .pagination button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-    @media (max-width: 720px) {
-      .bar { grid-template-columns: 1fr; position: static; }
-    }
+    body { margin:0; font-family:Arial, sans-serif; background:#0f0f12; color:#eee; }
+    header { background:#1a1a22; padding:20px; border-bottom:2px solid #333; }
+    header h1 { margin:0; font-size:26px; color:#6c8cff; }
+    nav { background:#15151a; padding:10px; }
+    nav a { color:#eee; margin:0 10px; text-decoration:none; font-weight:bold; }
+    nav a:hover { color:#6c8cff; }
+    .hero { padding:20px; }
+    .hero h2 { margin:0 0 10px; }
+    .bar { display:flex; gap:10px; padding:10px; background:#20202a; position:sticky; top:0; }
+    .bar input, .bar select { flex:1; padding:8px; border-radius:6px; border:1px solid #333; background:#1b1b22; color:#eee; }
+    main { padding:20px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:15px; }
+    .card { background:#1b1b22; border:1px solid #333; border-radius:10px; padding:15px; }
+    .card h3 { margin:0 0 8px; color:#6c8cff; }
+    .meta { font-size:12px; color:#aaa; margin-bottom:8px; }
+    .btn { display:inline-block; padding:6px 10px; border-radius:6px; background:#6c8cff; color:#fff; text-decoration:none; font-size:13px; }
+    .btn:hover { background:#5876e6; }
+    footer { background:#15151a; text-align:center; padding:15px; color:#aaa; margin-top:20px; }
   </style>
 </head>
 <body>
   <header>
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo">SB</div>
-        <div>
-          <strong>ScriptHub BR</strong><br />
-          <small style="color: var(--muted);">Plataforma de scripts e executores — visual inspirado</small>
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#scripts">Scripts</a></li>
-          <li><a href="#executores">Executores</a></li>
-          <li><a href="#regras">Regras</a></li>
-          <li><a href="#contato">Contato</a></li>
-          <li><a href="#login">Logar</a></li>
-          <li><a href="#registrar">Registrar</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="hero" id="inicio">
-      <h1>O seu hub de scripts e executores para Roblox</h1>
-      <p>Interface inspirada no ScriptHUB—foco em organização, segurança e clareza de uso.</p>
-    </div>
+    <h1>ScriptHub BR — Roblox 2026</h1>
+    <p>Scripts demonstrativos e interface inspirada no ScriptHub</p>
   </header>
-
-  <div class="bar">
-    <input id="q" type="search" placeholder="Buscar scripts por jogo, função ou tag..." />
-    <select id="cat">
-      <option value="todas">Todas as categorias</option>
-      <option value="Aimbot">Aimbot</option>
-      <option value="ESP">ESP</option>
-      <option value="Auto Farm">Auto Farm</option>
-      <option value="QoL">Qualidade de vida</option>
-    </select>
-    <select id="pageSize">
-      <option value="12">12 por página</option>
-      <option value="24">24 por página</option>
-      <option value="48">48 por página</option>
-    </select>
-    <button id="favToggle">⭐ Favoritos</button>
+  <nav>
+    <a href="#scripts">Scripts</a>
+    <a href="#executores">Executores</a>
+    <a href="#regras">Regras</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <div class="hero">
+    <h2>Bem-vindo ao hub de scripts</h2>
+    <p>Explore scripts atualizados para 2026 — organizados por jogo e categoria.</p>
   </div>
-
-  <main>
-    <section id="scripts">
-      <div class="section-title">
-        <h2>Scripts por jogo</h2>
-        <span class="badge" id="stats">Carregando…</span>
-      </div>
-      <div class="notice">
-        <strong>Aviso:</strong> o uso de scripts e executores pode violar os Termos do Roblox e causar banimentos. Este site é demonstrativo e educativo, sem distribuição de exploits. Avalie riscos e responsabilidade pessoal.
-      </div>
-      <div class="tabs" id="tabs"></div>
-      <div class="grid" id="grid"></div>
-      <div class="empty" id="empty" style="display:none;">Nenhum script encontrado.</div>
-      <div class="pagination" id="pager"></div>
-    </section>
-
-    <section id="executores" style="margin-top:24px;">
-      <div class="section-title">
-        <h2>Executores / Injetores (PC e Celular)</h2>
-        <span class="badge">Guia de compatibilidade</span>
-      </div>
-      <div class="grid" id="execGrid"></div>
-      <div class="notice" style="margin-top:12px;">
-        <strong>Como funciona:</strong> executores (injetores) rodam scripts Lua dentro do cliente Roblox. Há opções gratuitas e pagas; pesquise reputação, atualizações e segurança antes de usar.
-      </div>
-    </section>
-
-    <section id="regras" style="margin-top:24px;">
-      <div class="section-title">
-        <h2>Regras e boas práticas</h2>
-        <span class="badge">Segurança primeiro</span>
+  <div class="bar">
+    <input type="search" placeholder="Buscar scripts..." />
+    <select>
+      <option>Todas categorias</option>
+      <option>Aimbot</option>
+      <option>ESP</option>
+      <option>Auto Farm</option>
+      <option>QoL</option>
+    </select>
+  </div>
+  <main id="scripts">
+    <h2>Scripts por jogo</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Blade Ball — Auto Parry (2026)</h3>
+        <div class="meta">Categoria: ESP • Status: Demo</div>
+        <p>Script demonstrativo para defesa automática e visão ampliada.</p>
+        <a class="btn" href="#">Copiar Script</a>
       </div>
       <div class="card">
-        <ul>
-          <li>Use scripts apenas em ambientes permitidos e com consentimento.</li>
-          <li>Evite compartilhar dados pessoais ou credenciais.</li>
-          <li>Não distribua malware, keyloggers ou conteúdo malicioso.</li>
-          <li>Respeite as regras de cada jogo e da plataforma Roblox.</li>
-          <li>Teste em contas secundárias e entenda os riscos de banimento.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="contato" style="margin-top:24px;">
-      <div class="section-title">
-        <h2>Contato</h2>
-        <span class="badge">Suporte comunitário</span>
+        <h3>Bloxburg — Auto Money (2026)</h3>
+        <div class="meta">Categoria: Auto Farm • Status: Em teste</div>
+        <p>Automação de entregas e ganhos em Bloxburg.</p>
+        <a class="btn" href="#">Copiar Script</a>
       </div>
       <div class="card">
-        <p class="desc">Dúvidas? Use um canal comunitário (ex.: fórum/Discord) para trocar experiências e aprender com segurança. Evite links externos suspeitos.</p>
-        <div class="btns">
-          <button class="btn">Abrir FAQ</button>
-          <button class="btn">Guia de segurança</button>
-        </div>
+        <h3>Fish It — Auto Farm/Sell (2026)</h3>
+        <div class="meta">Categoria: Auto Farm • Status: Demo</div>
+        <p>Automação de pesca e venda.</p>
+        <a class="btn" href="#">Copiar Script</a>
       </div>
-    </section>
+      <div class="card">
+        <h3>Rivals — Aimbot + ESP (2026)</h3>
+        <div class="meta">Categoria: Aimbot • Status: Verificado</div>
+        <p>Configurações visuais e mira assistida.</p>
+        <a class="btn" href="#">Copiar Script</a>
+      </div>
+    </div>
   </main>
-
+  <main id="executores">
+    <h2>Executores / Injetores</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Executor PC — Demo</h3>
+        <div class="meta">Plataforma: Windows • Tipo: Injetor Lua</div>
+        <p>Compatível com versões recentes, atualizações frequentes.</p>
+        <a class="btn" href="#">Guia de Instalação</a>
+      </div>
+      <div class="card">
+        <h3>Executor Mobile — Demo</h3>
+        <div class="meta">Plataforma: Android/iOS • Tipo: Cliente modificado</div>
+        <p>Compatibilidade variável, avalie riscos.</p>
+        <a class="btn" href="#">Guia de Instalação</a>
+      </div>
+    </div>
+  </main>
+  <main id="regras">
+    <h2>Regras e boas práticas</h2>
+    <ul>
+      <li>Use scripts apenas em ambientes permitidos.</li>
+      <li>Não compartilhe dados pessoais.</li>
+      <li>Respeite as regras do Roblox e dos jogos.</li>
+      <li>Teste em contas secundárias.</li>
+    </ul>
+  </main>
+  <main id="contato">
+    <h2>Contato</h2>
+    <p>Suporte comunitário via fórum/Discord. Evite links suspeitos.</p>
+  </main>
   <footer>
-    <p>&copy; 2026 — ScriptHub BR (demo). Interface inspirada em plataformas de scripts com curadoria e foco em segurança.</p>
+    &copy; 2026 — ScriptHub BR (demo). Interface inspirada no ScriptHub.
   </footer>
-
-  <script>
-    // ---------- Dados de exemplo (sem exploits reais) ----------
-    const GAMES = [
-      { id: "blade-ball", name: "Blade Ball", tags: ["Auto Parry", "ESP", "QoL"] },
-      { id: "bloxburg", name: "Bloxburg", tags: ["Auto Farm", "Money", "QoL"] },
-      { id: "fish-it", name: "Fish It", tags: ["Auto Farm", "Auto Sell", "Auto Buy"] },
-      { id: "case-paradise", name: "Case Paradise", tags: ["Auto Buy", "Auto Battle", "Auto Win"] },
-      { id: "rivals", name: "Rivals", tags: ["Aimbot", "ESP", "Skins"] },
-    ];
-
-    const SCRIPTS = [
-      // Exemplos inspirados em categorias citadas publicamente (sem código real)
-      { id: 1, game: "rivals", title: "Rivals — Aimbot + ESP (Demo)", category: "Aimbot", features: ["Aimbot", "ESP", "Visual"], safe: "Verificado pela comunidade", desc: "Configurações visuais e mira assistida (conceito).", code: "print('Demo: Rivals Aimbot/ESP')" },
-      { id: 2, game: "fish-it", title: "Fish It — Auto Farm/Sell/Buy (Demo)", category: "Auto Farm", features: ["Auto Farm", "Auto Sell", "Auto Buy"], safe: "Em teste", desc: "Automação de pesca e venda (conceito).", code: "print('Demo: Fish It Auto Farm')" },
-      { id: 3, game: "case-paradise", title: "Case Paradise — Auto Buy/Battle/Win (Demo)", category: "QoL", features: ["Auto Buy", "Auto Battle", "Auto Win"], safe: "Em teste", desc: "Fluxos automatizados (conceito).", code: "print('Demo: Case Paradise')" },
-      { id: 4, game: "blade-ball", title: "Blade Ball — Auto Parry/ESP (Demo)", category: "ESP", features: ["Auto Parry", "ESP"], safe: "Verificado pela comunidade", desc: "Assistência de defesa e visão (conceito).", code: "print('Demo: Blade Ball')" },
-      { id: 5, game: "bloxburg", title: "Bloxburg — Auto Money/Entregas (Demo)", category: "Auto Farm", features: ["Auto Money", "Auto Entregador"], safe: "Em teste", desc: "Rotinas de ganho (conceito).", code: "print('Demo: Bloxburg')" },
-    ];
-
-    const EXECUTORES = [
-      { id: "pc-1", name: "Executor PC — Demo", platform: "PC (Windows)", type: "Injetor Lua", status: "Atualizações frequentes", notes: "Verifique reputação e compatibilidade com versões recentes." },
-      { id: "pc-2", name: "Executor PC — Sandbox", platform: "PC (Windows)", type: "Sandbox + Injeção", status: "Em teste", notes: "Evite executáveis desconhecidos; use VMs para testes." },
-      { id: "mobile-1", name: "Executor Mobile — Demo", platform: "Android", type: "Cliente modificado", status: "Compatibilidade variável", notes: "Apps modificados podem violar termos; avalie riscos." },
-      { id: "mobile-2", name: "Executor Mobile — Cloud", platform: "Android/iOS (Cloud)", type: "Streaming + Execução", status: "Latência", notes: "Soluções em nuvem podem exigir assinatura." },
-    ];
-
-    // ---------- Estado ----------
-    let page = 1;
-    let pageSize = parseInt(localStorage.getItem("pageSize") || "12", 10);
-    let showFavs = false;
-    let filtered = SCRIPTS.slice();
-
-    // ---------- Utilidades ----------
-    const grid = document.getElementById("grid");
-    const stats = document.getElementById("stats");
-    const pager = document.getElementById("pager");
-    const empty = document.getElementById("empty");
-    const tabs = document.getElementById("tabs");
-    const favorites = () => JSON.parse(localStorage.getItem("favs") || "[]");
-    const isFav = (id) => favorites().includes(id);
-    const setFav = (id) => {
-      const s = new Set(favorites());
-      if (s.has(id)) s.delete(id); else s.add(id);
-      localStorage.setItem("favs", JSON.stringify([...s]));
-      renderPage();
-    };
-
-    // ---------- Render ----------
-    function renderTabs() {
-      tabs.innerHTML = "";
-      const allBtn = document.createElement("button");
-      allBtn.textContent = "Todos os jogos";
-      allBtn.className = "active";
-      allBtn.addEventListener("click", () => filterByGame(null, allBtn));
-      tabs.appendChild(allBtn);
-
-      GAMES.forEach(g => {
-        const b = document.createElement("button");
-        b.textContent = g.name;
-        b.addEventListener("click", () => filterByGame(g.id, b));
-        tabs.appendChild(b);
-      });
-    }
-
-    function filterByGame(gameId, btn) {
-      tabs.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const base = showFavs ? SCRIPTS.filter(s => isFav(s.id)) : SCRIPTS;
-      filtered = base.filter(s => !gameId || s.game === gameId);
-      applyFilters(); // respeita busca/categoria
-    }
-
-    function renderStats() {
-      const total = showFavs ? SCRIPTS.filter(s => isFav(s.id)).length : SCRIPTS.length;
-      stats.textContent = `Total: ${total} • Filtradas: ${filtered.length} • Página ${page} • ${pageSize}/página`;
-    }
-
-    function applyFilters() {
-      const q = document.getElementById("q").value.trim().toLowerCase();
-      const cat = document.getElementById("cat").value;
-      const base = showFavs ? SCRIPTS.filter(s => isFav(s.id)) : SCRIPTS;
-
-      filtered = base.filter(s => {
-        const catOk = (cat === "todas") || (s.category === cat);
-        if (!q) return catOk;
-        const text = `${s.title} ${s.features.join(" ")}`.toLowerCase();
-        return catOk && text.includes(q);
-      });
-
-      page = 1;
-      renderPage();
-    }
-
-    function renderPage() {
-      renderStats();
-      const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
-      page = Math.min(page, totalPages);
-
-      const start = (page - 1) * pageSize;
-      const slice = filtered.slice(start, start + pageSize);
-
-      grid.innerHTML = "";
-      if (slice.length === 0) {
-        empty.style.display = "block";
-      } else {
-        empty.style.display = "none";
-        const frag = document.createDocumentFragment();
-        slice.forEach(s => {
-          const el = document.createElement("div");
-          el.className = "card";
-          el.innerHTML = `
-            <h3>${s.title}</h3>
-            <div class="meta">
-              <span class="badge">${s.category}</span>
-              <span class="badge">${s.features.join(", ")}</span>
-              <span class="badge">${s.safe}</span>
-            </div>
-            <p class="desc">${s.desc}</p>
-            <div class="btns">
-              <button class="btn primary" data-copy="${s.id}">Copiar script (demo)</button>
-              <button class="btn" data-fav="${s.id}">${isFav(s.id) ? "⭐ Favorito" : "☆ Favoritar"}</button>
-              <button class="btn warn">Guia de uso seguro</button>
-            </div>
-          `;
-          frag.appendChild(el);
-        });
-        grid.appendChild(frag);
-      }
-
-      // Paginação
-      pager.innerHTML = "";
-      const pfrag = document.createDocumentFragment();
-      const mkBtn = (label, p, active=false, disabled=false) => {
-        const b = document.createElement("button");
-        b.textContent = label;
-        if (active) b.classList.add("active");
-        if (disabled) b.disabled = true;
-        b.addEventListener("click", () => { page = p; renderPage(); });
-        return b;
-      };
-      pfrag.appendChild(mkBtn("«", 1, false, page === 1));
-      pfrag.appendChild(mkBtn("‹", Math.max(1, page - 1), false, page === 1));
-
-      const windowSize = 5;
-      const startP = Math.max(1, page - Math.floor(windowSize/2));
-      const endP = Math.min(totalPages, startP + windowSize - 1);
-      for (let p = startP; p <= endP; p++) pfrag.appendChild(mkBtn(String(p), p, p === page));
-
-      pfrag.appendChild(mkBtn("›", Math.min(totalPages, page + 1), false, page === totalPages));
-      pfrag.appendChild(mkBtn("»", totalPages, false, page === totalPages));
-      pager.appendChild(pfrag);
-
-      // Delegação: copiar e favoritar
-      grid.querySelectorAll("button[data-copy]").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          const id = parseInt(e.currentTarget.getAttribute("data-copy"), 10);
-          const s = SCRIPTS.find(x => x.id === id);
-          navigator.clipboard.writeText(s.code).then(() => {
-            btn.textContent = "Copiado!";
-            setTimeout(() => btn.textContent = "Copiar script (demo)", 1200);
-          });
-        });
-      });
-      grid.querySelectorAll("button[data-fav]").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-          const id = parseInt(e.currentTarget.getAttribute("data-fav"), 10);
-          setFav(id);
-        });
-      });
-    }
-
-    function renderExecutores() {
-      const execGrid = document.getElementById("execGrid");
-      execGrid.innerHTML = "";
-      const frag = document.createDocumentFragment();
-      EXECUTORES.forEach(ex => {
-        const el = document.createElement("div");
-        el.className = "card";
-        el.innerHTML = `
-          <h3>${ex.name}</h3>
-          <div class="meta">
-            <span class="badge">${ex.platform}</span>
-            <span class="badge">${ex.type}</span>
-            <span class="badge">${ex.status}</span>
-          </div>
-          <p class="desc">${ex.notes}</p>
-          <div class="btns">
-            <button class="btn">Guia de instalação (educativo)</button>
-            <button class="btn">Checklist de segurança</button>
-          </div>
-        `;
-        frag.appendChild(el);
-      });
-      execGrid.appendChild(frag);
-    }
-
-    // ---------- Eventos ----------
-    document.getElementById("q").addEventListener("input", () => {
-      clearTimeout(window.__qTimer);
-      window.__qTimer = setTimeout(applyFilters, 200);
-    });
-    document.getElementById("cat").addEventListener("change", applyFilters);
-    document.getElementById("pageSize").addEventListener("change", (e) => {
-      pageSize = parseInt(e.target.value, 10);
-      localStorage.setItem("pageSize", String(pageSize));
-      renderPage();
-    });
-    document.getElementById("favToggle").addEventListener("click", () => {
-      showFavs = !showFavs;
-      document.getElementById("favToggle").textContent = showFavs ? "⭐ Mostrando favoritos" : "⭐ Favoritos";
-      applyFilters();
-    });
-
-    // ---------- Init ----------
-    (function init() {
-      renderTabs();
-      applyFilters();
-      renderExecutores();
-    })();
-  </script>
 </body>
 </html>
 
