@@ -2,117 +2,123 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>ScriptHub BR — Roblox 2026</title>
+  <title>ScriptHub BR — Nova Interface</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { margin:0; font-family:Arial, sans-serif; background:#0f0f12; color:#eee; }
-    header { background:#1a1a22; padding:20px; border-bottom:2px solid #333; }
-    header h1 { margin:0; font-size:26px; color:#6c8cff; }
-    nav { background:#15151a; padding:10px; }
-    nav a { color:#eee; margin:0 10px; text-decoration:none; font-weight:bold; }
-    nav a:hover { color:#6c8cff; }
-    .hero { padding:20px; }
-    .hero h2 { margin:0 0 10px; }
-    .bar { display:flex; gap:10px; padding:10px; background:#20202a; position:sticky; top:0; }
-    .bar input, .bar select { flex:1; padding:8px; border-radius:6px; border:1px solid #333; background:#1b1b22; color:#eee; }
-    main { padding:20px; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:15px; }
-    .card { background:#1b1b22; border:1px solid #333; border-radius:10px; padding:15px; }
-    .card h3 { margin:0 0 8px; color:#6c8cff; }
-    .meta { font-size:12px; color:#aaa; margin-bottom:8px; }
-    .btn { display:inline-block; padding:6px 10px; border-radius:6px; background:#6c8cff; color:#fff; text-decoration:none; font-size:13px; }
-    .btn:hover { background:#5876e6; }
-    footer { background:#15151a; text-align:center; padding:15px; color:#aaa; margin-top:20px; }
+    body {
+      margin:0; font-family: 'Segoe UI', sans-serif;
+      background:#f5f6fa; color:#333;
+      display:flex;
+    }
+    /* Barra lateral */
+    aside {
+      width:220px; background:#2f3640; color:#fff;
+      height:100vh; position:fixed; left:0; top:0;
+      display:flex; flex-direction:column; padding:20px;
+    }
+    aside h1 { font-size:20px; margin:0 0 20px; color:#00a8ff; }
+    aside nav a {
+      display:block; padding:10px; margin-bottom:8px;
+      color:#fff; text-decoration:none; border-radius:6px;
+    }
+    aside nav a:hover { background:#353b48; }
+    /* Conteúdo principal */
+    main {
+      margin-left:220px; padding:20px; flex:1;
+    }
+    header {
+      background:#00a8ff; color:#fff; padding:20px; border-radius:8px;
+    }
+    header h2 { margin:0; }
+    .search-bar {
+      margin:20px 0; display:flex; gap:10px;
+    }
+    .search-bar input, .search-bar select {
+      padding:10px; border:1px solid #ccc; border-radius:6px; flex:1;
+    }
+    .grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:20px;
+    }
+    .card {
+      background:#fff; border:1px solid #ddd; border-radius:10px;
+      padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.05);
+    }
+    .card h3 { margin:0 0 10px; color:#00a8ff; }
+    .meta { font-size:12px; color:#666; margin-bottom:8px; }
+    .btn {
+      display:inline-block; padding:8px 12px; border-radius:6px;
+      background:#00a8ff; color:#fff; text-decoration:none; font-size:13px;
+    }
+    .btn:hover { background:#0097e6; }
+    footer {
+      margin-top:30px; text-align:center; color:#888; font-size:13px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ScriptHub BR — Roblox 2026</h1>
-    <p>Scripts demonstrativos e interface inspirada no ScriptHub</p>
-  </header>
-  <nav>
-    <a href="#scripts">Scripts</a>
-    <a href="#executores">Executores</a>
-    <a href="#regras">Regras</a>
-    <a href="#contato">Contato</a>
-  </nav>
-  <div class="hero">
-    <h2>Bem-vindo ao hub de scripts</h2>
-    <p>Explore scripts atualizados para 2026 — organizados por jogo e categoria.</p>
-  </div>
-  <div class="bar">
-    <input type="search" placeholder="Buscar scripts..." />
-    <select>
-      <option>Todas categorias</option>
-      <option>Aimbot</option>
-      <option>ESP</option>
-      <option>Auto Farm</option>
-      <option>QoL</option>
-    </select>
-  </div>
-  <main id="scripts">
-    <h2>Scripts por jogo</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Blade Ball — Auto Parry (2026)</h3>
-        <div class="meta">Categoria: ESP • Status: Demo</div>
-        <p>Script demonstrativo para defesa automática e visão ampliada.</p>
-        <a class="btn" href="#">Copiar Script</a>
-      </div>
-      <div class="card">
-        <h3>Bloxburg — Auto Money (2026)</h3>
-        <div class="meta">Categoria: Auto Farm • Status: Em teste</div>
-        <p>Automação de entregas e ganhos em Bloxburg.</p>
-        <a class="btn" href="#">Copiar Script</a>
-      </div>
-      <div class="card">
-        <h3>Fish It — Auto Farm/Sell (2026)</h3>
-        <div class="meta">Categoria: Auto Farm • Status: Demo</div>
-        <p>Automação de pesca e venda.</p>
-        <a class="btn" href="#">Copiar Script</a>
-      </div>
-      <div class="card">
-        <h3>Rivals — Aimbot + ESP (2026)</h3>
-        <div class="meta">Categoria: Aimbot • Status: Verificado</div>
-        <p>Configurações visuais e mira assistida.</p>
-        <a class="btn" href="#">Copiar Script</a>
-      </div>
+  <aside>
+    <h1>ScriptHub BR</h1>
+    <nav>
+      <a href="#scripts">Scripts</a>
+      <a href="#executores">Executores</a>
+      <a href="#regras">Regras</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </aside>
+  <main>
+    <header>
+      <h2>Nova Interface — 2026</h2>
+      <p>Layout minimalista com barra lateral e cards limpos.</p>
+    </header>
+    <div class="search-bar">
+      <input type="search" placeholder="Buscar..." />
+      <select>
+        <option>Todas categorias</option>
+        <option>Aimbot</option>
+        <option>ESP</option>
+        <option>Auto Farm</option>
+        <option>QoL</option>
+      </select>
     </div>
-  </main>
-  <main id="executores">
-    <h2>Executores / Injetores</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Executor PC — Demo</h3>
-        <div class="meta">Plataforma: Windows • Tipo: Injetor Lua</div>
-        <p>Compatível com versões recentes, atualizações frequentes.</p>
-        <a class="btn" href="#">Guia de Instalação</a>
+    <section id="scripts">
+      <h2>Scripts</h2>
+      <div class="grid">
+        <!-- Adicione seus scripts aqui -->
+        <!-- Exemplo:
+        <div class="card">
+          <h3>Nome do Script</h3>
+          <div class="meta">Categoria: Auto Farm • Status: Atualizado</div>
+          <p>Descrição breve do script.</p>
+          <a class="btn" href="#">Copiar Script</a>
+        </div>
+        -->
       </div>
-      <div class="card">
-        <h3>Executor Mobile — Demo</h3>
-        <div class="meta">Plataforma: Android/iOS • Tipo: Cliente modificado</div>
-        <p>Compatibilidade variável, avalie riscos.</p>
-        <a class="btn" href="#">Guia de Instalação</a>
+    </section>
+    <section id="executores">
+      <h2>Executores</h2>
+      <div class="grid">
+        <!-- Adicione seus executores aqui -->
       </div>
-    </div>
+    </section>
+    <section id="regras">
+      <h2>Regras</h2>
+      <ul>
+        <li>Use scripts apenas em ambientes permitidos.</li>
+        <li>Não compartilhe dados pessoais.</li>
+        <li>Respeite as regras do Roblox e dos jogos.</li>
+      </ul>
+    </section>
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>Suporte comunitário via fórum/Discord.</p>
+    </section>
+    <footer>
+      &copy; 2026 — ScriptHub BR (modelo). Interface pronta para personalização.
+    </footer>
   </main>
-  <main id="regras">
-    <h2>Regras e boas práticas</h2>
-    <ul>
-      <li>Use scripts apenas em ambientes permitidos.</li>
-      <li>Não compartilhe dados pessoais.</li>
-      <li>Respeite as regras do Roblox e dos jogos.</li>
-      <li>Teste em contas secundárias.</li>
-    </ul>
-  </main>
-  <main id="contato">
-    <h2>Contato</h2>
-    <p>Suporte comunitário via fórum/Discord. Evite links suspeitos.</p>
-  </main>
-  <footer>
-    &copy; 2026 — ScriptHub BR (demo). Interface inspirada no ScriptHub.
-  </footer>
 </body>
 </html>
+
 
 
