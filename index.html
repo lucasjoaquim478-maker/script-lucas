@@ -2,62 +2,67 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>ScriptHub BR — Nova Interface</title>
+  <title>ScriptHub BR — Modelo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       margin:0; font-family: 'Segoe UI', sans-serif;
-      background:#f5f6fa; color:#333;
-      display:flex;
+      background:#0f0f12; color:#eee;
     }
-    /* Barra lateral */
-    aside {
-      width:220px; background:#2f3640; color:#fff;
-      height:100vh; position:fixed; left:0; top:0;
-      display:flex; flex-direction:column; padding:20px;
-    }
-    aside h1 { font-size:20px; margin:0 0 20px; color:#00a8ff; }
-    aside nav a {
-      display:block; padding:10px; margin-bottom:8px;
-      color:#fff; text-decoration:none; border-radius:6px;
-    }
-    aside nav a:hover { background:#353b48; }
-    /* Conteúdo principal */
-    main {
-      margin-left:220px; padding:20px; flex:1;
-    }
+    /* Cabeçalho fixo */
     header {
-      background:#00a8ff; color:#fff; padding:20px; border-radius:8px;
+      background:#1a1a22; padding:15px 30px;
+      display:flex; justify-content:space-between; align-items:center;
+      position:sticky; top:0; z-index:1000;
+      border-bottom:2px solid #2a2a33;
     }
-    header h2 { margin:0; }
-    .search-bar {
-      margin:20px 0; display:flex; gap:10px;
+    header h1 { margin:0; font-size:22px; color:#6c8cff; }
+    nav a {
+      color:#eee; margin:0 12px; text-decoration:none; font-weight:bold;
     }
-    .search-bar input, .search-bar select {
-      padding:10px; border:1px solid #ccc; border-radius:6px; flex:1;
+    nav a:hover { color:#6c8cff; }
+    /* Hero */
+    .hero {
+      padding:40px 30px; text-align:center;
     }
+    .hero h2 { margin:0 0 10px; font-size:28px; color:#6c8cff; }
+    .hero p { color:#aaa; }
+    /* Barra de busca */
+    .bar {
+      display:flex; gap:10px; padding:15px 30px;
+      background:#15151a; border-top:1px solid #2a2a33;
+      position:sticky; top:60px; z-index:999;
+    }
+    .bar input, .bar select {
+      flex:1; padding:10px; border-radius:6px;
+      border:1px solid #333; background:#1b1b22; color:#eee;
+    }
+    main { padding:30px; }
+    h2 { color:#6c8cff; margin-bottom:15px; }
+    /* Grid de cards */
     .grid {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
       gap:20px;
     }
     .card {
-      background:#fff; border:1px solid #ddd; border-radius:10px;
-      padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.05);
+      background:#1b1b22; border:1px solid #2a2a33; border-radius:10px;
+      padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.3);
     }
-    .card h3 { margin:0 0 10px; color:#00a8ff; }
-    .meta { font-size:12px; color:#666; margin-bottom:8px; }
+    .card h3 { margin:0 0 8px; color:#6c8cff; }
+    .meta { font-size:12px; color:#aaa; margin-bottom:8px; }
     .btn {
       display:inline-block; padding:8px 12px; border-radius:6px;
-      background:#00a8ff; color:#fff; text-decoration:none; font-size:13px;
+      background:#6c8cff; color:#fff; text-decoration:none; font-size:13px;
     }
-    .btn:hover { background:#0097e6; }
+    .btn:hover { background:#5876e6; }
     footer {
-      margin-top:30px; text-align:center; color:#888; font-size:13px;
+      background:#15151a; text-align:center; padding:20px; color:#aaa;
+      border-top:2px solid #2a2a33; margin-top:40px;
     }
   </style>
 </head>
 <body>
-  <aside>
+  <header>
     <h1>ScriptHub BR</h1>
     <nav>
       <a href="#scripts">Scripts</a>
@@ -65,58 +70,56 @@
       <a href="#regras">Regras</a>
       <a href="#contato">Contato</a>
     </nav>
-  </aside>
-  <main>
-    <header>
-      <h2>Nova Interface — 2026</h2>
-      <p>Layout minimalista com barra lateral e cards limpos.</p>
-    </header>
-    <div class="search-bar">
-      <input type="search" placeholder="Buscar..." />
-      <select>
-        <option>Todas categorias</option>
-        <option>Aimbot</option>
-        <option>ESP</option>
-        <option>Auto Farm</option>
-        <option>QoL</option>
-      </select>
+  </header>
+  <div class="hero">
+    <h2>Interface estilo ScriptHub</h2>
+    <p>Modelo pronto para você adicionar seus scripts e executores.</p>
+  </div>
+  <div class="bar">
+    <input type="search" placeholder="Buscar..." />
+    <select>
+      <option>Todas categorias</option>
+      <option>Aimbot</option>
+      <option>ESP</option>
+      <option>Auto Farm</option>
+      <option>QoL</option>
+    </select>
+  </div>
+  <main id="scripts">
+    <h2>Scripts</h2>
+    <div class="grid">
+      <!-- Adicione seus scripts aqui -->
+      <!-- Exemplo:
+      <div class="card">
+        <h3>Nome do Script</h3>
+        <div class="meta">Categoria: Auto Farm • Status: Atualizado</div>
+        <p>Descrição breve do script.</p>
+        <a class="btn" href="#">Copiar Script</a>
+      </div>
+      -->
     </div>
-    <section id="scripts">
-      <h2>Scripts</h2>
-      <div class="grid">
-        <!-- Adicione seus scripts aqui -->
-        <!-- Exemplo:
-        <div class="card">
-          <h3>Nome do Script</h3>
-          <div class="meta">Categoria: Auto Farm • Status: Atualizado</div>
-          <p>Descrição breve do script.</p>
-          <a class="btn" href="#">Copiar Script</a>
-        </div>
-        -->
-      </div>
-    </section>
-    <section id="executores">
-      <h2>Executores</h2>
-      <div class="grid">
-        <!-- Adicione seus executores aqui -->
-      </div>
-    </section>
-    <section id="regras">
-      <h2>Regras</h2>
-      <ul>
-        <li>Use scripts apenas em ambientes permitidos.</li>
-        <li>Não compartilhe dados pessoais.</li>
-        <li>Respeite as regras do Roblox e dos jogos.</li>
-      </ul>
-    </section>
-    <section id="contato">
-      <h2>Contato</h2>
-      <p>Suporte comunitário via fórum/Discord.</p>
-    </section>
-    <footer>
-      &copy; 2026 — ScriptHub BR (modelo). Interface pronta para personalização.
-    </footer>
   </main>
+  <main id="executores">
+    <h2>Executores</h2>
+    <div class="grid">
+      <!-- Adicione seus executores aqui -->
+    </div>
+  </main>
+  <main id="regras">
+    <h2>Regras</h2>
+    <ul>
+      <li>Use scripts apenas em ambientes permitidos.</li>
+      <li>Não compartilhe dados pessoais.</li>
+      <li>Respeite as regras do Roblox e dos jogos.</li>
+    </ul>
+  </main>
+  <main id="contato">
+    <h2>Contato</h2>
+    <p>Suporte comunitário via fórum/Discord.</p>
+  </main>
+  <footer>
+    &copy; 2026 — ScriptHub BR (modelo). Interface inspirada no ScriptHub.
+  </footer>
 </body>
 </html>
 
