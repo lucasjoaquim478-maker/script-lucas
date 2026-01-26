@@ -9,7 +9,6 @@
       margin:0; font-family: 'Segoe UI', sans-serif;
       background:#0f0f12; color:#eee;
     }
-    /* Cabeçalho fixo */
     header {
       background:#1a1a22; padding:15px 30px;
       display:flex; justify-content:space-between; align-items:center;
@@ -21,13 +20,11 @@
       color:#eee; margin:0 12px; text-decoration:none; font-weight:bold;
     }
     nav a:hover { color:#6c8cff; }
-    /* Hero */
     .hero {
       padding:40px 30px; text-align:center;
     }
     .hero h2 { margin:0 0 10px; font-size:28px; color:#6c8cff; }
     .hero p { color:#aaa; }
-    /* Barra de busca */
     .bar {
       display:flex; gap:10px; padding:15px 30px;
       background:#15151a; border-top:1px solid #2a2a33;
@@ -39,89 +36,120 @@
     }
     main { padding:30px; }
     h2 { color:#6c8cff; margin-bottom:15px; }
-    /* Grid de cards */
     .grid {
       display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
       gap:20px;
     }
     .card {
       background:#1b1b22; border:1px solid #2a2a33; border-radius:10px;
-      padding:15px; box-shadow:0 2px 6px rgba(0,0,0,0.3);
+      padding:15px;
+    }
+    .card img {
+      width:100%; border-radius:8px; margin-bottom:10px;
     }
     .card h3 { margin:0 0 8px; color:#6c8cff; }
     .meta { font-size:12px; color:#aaa; margin-bottom:8px; }
     .btn {
       display:inline-block; padding:8px 12px; border-radius:6px;
       background:#6c8cff; color:#fff; text-decoration:none; font-size:13px;
+      cursor:pointer;
     }
     .btn:hover { background:#5876e6; }
     footer {
       background:#15151a; text-align:center; padding:20px; color:#aaa;
       border-top:2px solid #2a2a33; margin-top:40px;
     }
+    textarea {
+      position:absolute; left:-9999px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ScriptHub BR</h1>
-    <nav>
-      <a href="#scripts">Scripts</a>
-      <a href="#executores">Executores</a>
-      <a href="#regras">Regras</a>
-      <a href="#contato">Contato</a>
-    </nav>
-  </header>
-  <div class="hero">
-    <h2>Interface estilo ScriptHub</h2>
-    <p>Modelo pronto para você adicionar seus scripts e executores.</p>
-  </div>
-  <div class="bar">
-    <input type="search" placeholder="Buscar..." />
-    <select>
-      <option>Todas categorias</option>
-      <option>Aimbot</option>
-      <option>ESP</option>
-      <option>Auto Farm</option>
-      <option>QoL</option>
-    </select>
-  </div>
-  <main id="scripts">
-    <h2>Scripts</h2>
-    <div class="grid">
-      <!-- Adicione seus scripts aqui -->
-      <!-- Exemplo:
-      <div class="card">
-        <h3>Nome do Script</h3>
-        <div class="meta">Categoria: Auto Farm • Status: Atualizado</div>
-        <p>Descrição breve do script.</p>
-        <a class="btn" href="#">Copiar Script</a>
-      </div>
-      -->
+
+<header>
+  <h1>ScriptHub BR</h1>
+  <nav>
+    <a href="#scripts">Scripts</a>
+    <a href="#executores">Executores</a>
+    <a href="#regras">Regras</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h2>Interface estilo ScriptHub</h2>
+  <p>Modelo pronto para você adicionar seus scripts e executores.</p>
+</div>
+
+<div class="bar">
+  <input type="search" placeholder="Buscar..." />
+  <select>
+    <option>Todas categorias</option>
+    <option>Auto Farm</option>
+    <option>ESP</option>
+    <option>QoL</option>
+  </select>
+</div>
+
+<main id="scripts">
+  <h2>Scripts</h2>
+  <div class="grid">
+
+    <!-- SCRIPT BROGRAVEM C -->
+    <div class="card">
+      <img src="https://tr.rbxcdn.com/180DAY-9a5c6d4d6b3a1e9f3c1a7c5d8a9b0c12/768/432/Image/Png/noFilter" alt="Brogravem C">
+      <h3>Brogravem C Script</h3>
+      <div class="meta">Categoria: Auto Farm • Status: Ativo</div>
+      <p>Script para Brogravem C com funções automáticas.</p>
+
+      <button class="btn" onclick="copiarScript()">Copiar Script</button>
+
+      <textarea id="script">
+--[[ 
+WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()
+      </textarea>
     </div>
-  </main>
-  <main id="executores">
-    <h2>Executores</h2>
-    <div class="grid">
-      <!-- Adicione seus executores aqui -->
-    </div>
-  </main>
-  <main id="regras">
-    <h2>Regras</h2>
-    <ul>
-      <li>Use scripts apenas em ambientes permitidos.</li>
-      <li>Não compartilhe dados pessoais.</li>
-      <li>Respeite as regras do Roblox e dos jogos.</li>
-    </ul>
-  </main>
-  <main id="contato">
-    <h2>Contato</h2>
-    <p>Suporte comunitário via fórum/Discord.</p>
-  </main>
-  <footer>
-    &copy; 2026 — ScriptHub BR (modelo). Interface inspirada no ScriptHub.
-  </footer>
+
+  </div>
+</main>
+
+<main id="executores">
+  <h2>Executores</h2>
+  <div class="grid"></div>
+</main>
+
+<main id="regras">
+  <h2>Regras</h2>
+  <ul>
+    <li>Use scripts apenas em ambientes permitidos.</li>
+    <li>Não compartilhe dados pessoais.</li>
+    <li>Respeite as regras do Roblox e dos jogos.</li>
+  </ul>
+</main>
+
+<main id="contato">
+  <h2>Contato</h2>
+  <p>Suporte comunitário via fórum ou Discord.</p>
+</main>
+
+<footer>
+  &copy; 2026 — ScriptHub BR (modelo).
+</footer>
+
+<script>
+function copiarScript() {
+  const texto = document.getElementById("script");
+  texto.select();
+  document.execCommand("copy");
+  alert("Script copiado com sucesso!");
+}
+</script>
+
 </body>
 </html>
+
 
 
 
