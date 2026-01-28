@@ -91,12 +91,12 @@
     }
 
     .descricao, .btn {
-      display:none; /* escondidos por padrão */
+      display:none;
     }
 
     .card.active .descricao,
     .card.active .btn {
-      display:block; /* aparecem quando o card é clicado */
+      display:block;
     }
 
     .descricao {
@@ -150,20 +150,17 @@
 
     <!-- CARD DO SCRIPT -->
     <div class="card" onclick="toggleCard(this)">
-      <img src="https://placehold.co/600x340/1b1b22/6c8cff?text=Brookhaven+RP" alt="Brookhaven RP">
+      <img src="/attachments/7T7VNqSJtTMaqEANz2tmz.png" alt="Brookhaven RP">
       <h3>Brookhaven RP Script</h3>
       <div class="meta">Categoria: troll • Status: Ativo</div>
 
-      <!-- DESCRIÇÃO DO SCRIPT -->
       <p class="descricao">
         O <strong>Coquette Hub</strong> é um script muito OP para Brookhaven RP, oferecendo menus de administração avançados e diversas funções de trollagem. 
         Ele é bastante popular na comunidade Roblox e ideal para quem quer explorar o jogo com recursos extras e se divertir com amigos.
       </p>
 
-      <!-- BOTÃO COPIAR -->
       <button class="btn" onclick="copiarScript(event)" aria-label="Copiar script">Copiar Script</button>
 
-      <!-- SCRIPT (mantido escondido) -->
       <textarea id="script" style="display:none;">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()
       </textarea>
@@ -182,7 +179,7 @@ function toggleCard(card) {
 }
 
 function copiarScript(event) {
-  event.stopPropagation(); // evita fechar o card ao clicar no botão
+  event.stopPropagation();
   const script = document.getElementById("script").value;
   navigator.clipboard.writeText(script).then(() => {
     alert("✅ Script copiado com sucesso!");
@@ -194,9 +191,3 @@ function copiarScript(event) {
 
 </body>
 </html>
-
-
-
-
-
-
