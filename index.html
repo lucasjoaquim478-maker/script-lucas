@@ -2,9 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>ScriptHub BR — Scripts</title>
+  <title>ScriptHub BR — Modelo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- FONTE CONFIÁVEL -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -19,8 +20,10 @@
       background:#1a1a22;
       padding:15px 30px;
       display:flex;
-      justify-content:center;
+      justify-content:space-between;
       align-items:center;
+      position:sticky;
+      top:0;
       border-bottom:2px solid #2a2a33;
     }
 
@@ -30,14 +33,24 @@
       color:#6c8cff;
     }
 
+    nav a {
+      color:#eee;
+      margin:0 12px;
+      text-decoration:none;
+      font-weight:500;
+    }
+
+    nav a:hover {
+      color:#6c8cff;
+    }
+
     main {
       padding:30px;
     }
 
     h2 {
       color:#6c8cff;
-      margin-bottom:20px;
-      text-align:center;
+      margin-bottom:15px;
     }
 
     .grid {
@@ -53,7 +66,6 @@
       padding:15px;
       cursor:pointer;
       transition:transform 0.2s ease, box-shadow 0.2s ease;
-      text-align:center;
     }
 
     .card:hover {
@@ -61,9 +73,11 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.4);
     }
 
+    /* Ajuste responsivo da imagem */
     .card img {
       max-width:100%;
       height:auto;
+      display:block;
       border-radius:8px;
       margin-bottom:10px;
     }
@@ -79,23 +93,20 @@
       margin-bottom:10px;
     }
 
-    /* Página de detalhes */
-    .details {
+    .descricao, .btn {
       display:none;
-      background:#1b1b22;
-      border:1px solid #2a2a33;
-      border-radius:10px;
-      padding:20px;
-      margin-top:20px;
     }
 
-    .details.active {
+    .card.active .descricao,
+    .card.active .btn {
       display:block;
     }
 
-    .details h2 {
-      color:#6c8cff;
-      margin-top:0;
+    .descricao {
+      font-size:14px;
+      color:#ddd;
+      margin-bottom:15px;
+      line-height:1.4;
     }
 
     .btn {
@@ -109,19 +120,10 @@
       font-size:14px;
       font-weight:600;
       cursor:pointer;
-      margin-top:15px;
     }
 
     .btn:hover {
       background:#5876e6;
-    }
-
-    .back {
-      display:inline-block;
-      margin-top:15px;
-      color:#6c8cff;
-      cursor:pointer;
-      font-weight:600;
     }
 
     footer {
@@ -134,36 +136,39 @@
     }
   </style>
 </head>
+
 <body>
 
 <header>
   <h1>ScriptHub BR</h1>
+  <nav>
+    <a href="#scripts">Scripts</a>
+  </nav>
 </header>
 
-<main>
+<main id="scripts">
   <h2>Scripts</h2>
 
-  <!-- Lista de Cards -->
-  <div id="cards" class="grid">
-    <div class="card" onclick="showDetails('brookhaven')">
-      <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png" alt="Brookhaven RP">
+  <div class="grid">
+
+    <!-- CARD DO SCRIPT -->
+    <div class="card" onclick="toggleCard(this)">
+      <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=697be64e&is=697a94ce&hm=2bb5d4d849b710dc151e07fbb09f09384d8f650cca1401bc2e3dfdbe8831d296&" alt="Brookhaven RP">
       <h3>Brookhaven RP Script</h3>
       <div class="meta">Categoria: troll • Status: Ativo</div>
-    </div>
-  </div>
 
-  <!-- Detalhes -->
-  <div id="brookhaven" class="details">
-    <h2>Brookhaven RP Script</h2>
-    <p>
-      O <strong>Coquette Hub</strong> é um script muito OP para Brookhaven RP, oferecendo menus de administração avançados e diversas funções de trollagem. 
-      Ele é bastante popular na comunidade Roblox e ideal para quem quer explorar o jogo com recursos extras e se divertir com amigos.
-    </p>
-    <button class="btn" onclick="copiarScript()">Copiar Script</button>
-    <span class="back" onclick="voltar()">← Voltar</span>
-    <textarea id="script" style="display:none;">
+      <p class="descricao">
+        O <strong>Coquette Hub</strong> é um script muito OP para Brookhaven RP, oferecendo menus de administração avançados e diversas funções de trollagem. 
+        Ele é bastante popular na comunidade Roblox e ideal para quem quer explorar o jogo com recursos extras e se divertir com amigos.
+      </p>
+
+      <button class="btn" onclick="copiarScript(event)" aria-label="Copiar script">Copiar Script</button>
+
+      <textarea id="script" style="display:none;">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()
-    </textarea>
+      </textarea>
+    </div>
+
   </div>
 </main>
 
@@ -172,18 +177,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/r
 </footer>
 
 <script>
-function showDetails(id) {
-  document.getElementById("cards").style.display = "none";
-  document.getElementById(id).classList.add("active");
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function toggleCard(card) {
+  card.classList.toggle("active");
 }
 
-function voltar() {
-  document.getElementById("cards").style.display = "grid";
-  document.querySelectorAll('.details').forEach(det => det.classList.remove('active'));
-}
-
-function copiarScript() {
+function copiarScript(event) {
+  event.stopPropagation();
   const script = document.getElementById("script").value;
   navigator.clipboard.writeText(script).then(() => {
     alert("✅ Script copiado com sucesso!");
@@ -195,3 +194,4 @@ function copiarScript() {
 
 </body>
 </html>
+
