@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>ScriptHub BR — Categorias</title>
+  <title>ScriptHub BR — Scripts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
       background:#1a1a22;
       padding:15px 30px;
       display:flex;
-      justify-content:space-between;
+      justify-content:center;
       align-items:center;
       border-bottom:2px solid #2a2a33;
     }
@@ -30,30 +30,14 @@
       color:#6c8cff;
     }
 
-    nav {
-      display:flex;
-      gap:15px;
-    }
-
-    nav button {
-      background:none;
-      border:none;
-      color:#eee;
-      font-weight:600;
-      cursor:pointer;
-      padding:8px 14px;
-      border-radius:6px;
-      transition:background 0.2s;
-    }
-
-    nav button:hover,
-    nav button.active {
-      background:#6c8cff;
-      color:#fff;
-    }
-
     main {
       padding:30px;
+    }
+
+    h2 {
+      color:#6c8cff;
+      margin-bottom:20px;
+      text-align:center;
     }
 
     .grid {
@@ -69,6 +53,7 @@
       padding:15px;
       cursor:pointer;
       transition:transform 0.2s ease, box-shadow 0.2s ease;
+      text-align:center;
     }
 
     .card:hover {
@@ -131,6 +116,14 @@
       background:#5876e6;
     }
 
+    .back {
+      display:inline-block;
+      margin-top:15px;
+      color:#6c8cff;
+      cursor:pointer;
+      font-weight:600;
+    }
+
     footer {
       background:#15151a;
       text-align:center;
@@ -145,57 +138,32 @@
 
 <header>
   <h1>ScriptHub BR</h1>
-  <nav>
-    <button class="tab active" onclick="showSection('scripts')">Scripts</button>
-    <button class="tab" onclick="showSection('executores')">Executores</button>
-  </nav>
 </header>
 
 <main>
-  <!-- Seção Scripts -->
-  <div id="scripts" class="section active">
-    <h2>Scripts</h2>
-    <div class="grid">
-      <div class="card" onclick="showDetails('brookhaven')">
-        <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png" alt="Brookhaven RP">
-        <h3>Brookhaven RP Script</h3>
-        <div class="meta">Categoria: troll • Status: Ativo</div>
-      </div>
-    </div>
+  <h2>Scripts</h2>
 
-    <!-- Detalhes do Brookhaven -->
-    <div id="brookhaven" class="details">
-      <h2>Brookhaven RP Script</h2>
-      <p>
-        O <strong>Coquette Hub</strong> é um script muito OP para Brookhaven RP, oferecendo menus de administração avançados e diversas funções de trollagem. 
-        Ele é bastante popular na comunidade Roblox e ideal para quem quer explorar o jogo com recursos extras e se divertir com amigos.
-      </p>
-      <button class="btn" onclick="copiarScript()">Copiar Script</button>
-      <textarea id="script" style="display:none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()
-      </textarea>
+  <!-- Lista de Cards -->
+  <div id="cards" class="grid">
+    <div class="card" onclick="showDetails('brookhaven')">
+      <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png" alt="Brookhaven RP">
+      <h3>Brookhaven RP Script</h3>
+      <div class="meta">Categoria: troll • Status: Ativo</div>
     </div>
   </div>
 
-  <!-- Seção Executores -->
-  <div id="executores" class="section">
-    <h2>Executores</h2>
-    <div class="grid">
-      <div class="card" onclick="showDetails('executor')">
-        <img src="https://placehold.co/600x340/1b1b22/6c8cff?text=Executor" alt="Executor">
-        <h3>Executor XYZ</h3>
-        <div class="meta">Categoria: utilitário • Status: Ativo</div>
-      </div>
-    </div>
-
-    <!-- Detalhes do Executor -->
-    <div id="executor" class="details">
-      <h2>Executor XYZ</h2>
-      <p>
-        O Executor XYZ é usado para rodar scripts no Roblox com alta compatibilidade e desempenho.
-      </p>
-      <button class="btn">Baixar Executor</button>
-    </div>
+  <!-- Detalhes -->
+  <div id="brookhaven" class="details">
+    <h2>Brookhaven RP Script</h2>
+    <p>
+      O <strong>Coquette Hub</strong> é um script muito OP para Brookhaven RP, oferecendo menus de administração avançados e diversas funções de trollagem. 
+      Ele é bastante popular na comunidade Roblox e ideal para quem quer explorar o jogo com recursos extras e se divertir com amigos.
+    </p>
+    <button class="btn" onclick="copiarScript()">Copiar Script</button>
+    <span class="back" onclick="voltar()">← Voltar</span>
+    <textarea id="script" style="display:none;">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()
+    </textarea>
   </div>
 </main>
 
@@ -204,17 +172,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/r
 </footer>
 
 <script>
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+function showDetails(id) {
+  document.getElementById("cards").style.display = "none";
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function showDetails(id) {
+function voltar() {
+  document.getElementById("cards").style.display = "grid";
   document.querySelectorAll('.details').forEach(det => det.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo({ top: document.getElementById(id).offsetTop - 20, behavior: 'smooth' });
 }
 
 function copiarScript() {
