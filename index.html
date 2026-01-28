@@ -1,197 +1,54 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>ScriptHub BR — Modelo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* ... (mantenha seu CSS original e adicione/ajuste estes abaixo) ... */
 
-  <!-- FONTE CONFIÁVEL -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  .card {
+    background: rgba(27, 27, 34, 0.8);
+    backdrop-filter: blur(5px); /* Efeito de vidro */
+    border: 1px solid #333;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
 
-  <style>
-    body {
-      margin:0;
-      font-family:'Montserrat', sans-serif;
-      background:#0f0f12;
-      color:#eee;
-    }
+  .card:hover {
+    border-color: #6c8cff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  }
 
-    header {
-      background:#1a1a22;
-      padding:15px 30px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:sticky;
-      top:0;
-      border-bottom:2px solid #2a2a33;
-    }
+  /* Estilo do Botão quando copiado */
+  .btn.success {
+    background: #28a745 !important;
+  }
 
-    header h1 {
-      margin:0;
-      font-size:22px;
-      color:#6c8cff;
-    }
-
-    nav a {
-      color:#eee;
-      margin:0 12px;
-      text-decoration:none;
-      font-weight:500;
-    }
-
-    nav a:hover {
-      color:#6c8cff;
-    }
-
-    main {
-      padding:30px;
-    }
-
-    h2 {
-      color:#6c8cff;
-      margin-bottom:15px;
-    }
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-      gap:20px;
-    }
-
-    .card {
-      background:#1b1b22;
-      border:1px solid #2a2a33;
-      border-radius:10px;
-      padding:15px;
-      cursor:pointer;
-      transition:transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform:translateY(-5px);
-      box-shadow:0 4px 12px rgba(0,0,0,0.4);
-    }
-
-    /* Ajuste responsivo da imagem */
-    .card img {
-      max-width:100%;
-      height:auto;
-      display:block;
-      border-radius:8px;
-      margin-bottom:10px;
-    }
-
-    .card h3 {
-      margin:0 0 6px;
-      color:#6c8cff;
-    }
-
-    .meta {
-      font-size:12px;
-      color:#aaa;
-      margin-bottom:10px;
-    }
-
-    .descricao, .btn {
-      display:none;
-    }
-
-    .card.active .descricao,
-    .card.active .btn {
-      display:block;
-    }
-
-    .descricao {
-      font-size:14px;
-      color:#ddd;
-      margin-bottom:15px;
-      line-height:1.4;
-    }
-
-    .btn {
-      width:100%;
-      text-align:center;
-      padding:10px;
-      border-radius:6px;
-      background:#6c8cff;
-      color:#fff;
-      border:none;
-      font-size:14px;
-      font-weight:600;
-      cursor:pointer;
-    }
-
-    .btn:hover {
-      background:#5876e6;
-    }
-
-    footer {
-      background:#15151a;
-      text-align:center;
-      padding:25px;
-      color:#aaa;
-      border-top:2px solid #2a2a33;
-      margin-top:40px;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <h1>ScriptHub BR</h1>
-  <nav>
-    <a href="#scripts">Scripts</a>
-  </nav>
-</header>
-
-<main id="scripts">
-  <h2>Scripts</h2>
-
-  <div class="grid">
-
-    <!-- CARD DO SCRIPT -->
-    <div class="card" onclick="toggleCard(this)">
-      <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=697be64e&is=697a94ce&hm=2bb5d4d849b710dc151e07fbb09f09384d8f650cca1401bc2e3dfdbe8831d296&" alt="Brookhaven RP">
-      <h3>Brookhaven RP Script</h3>
-      <div class="meta">Categoria: troll • Status: Ativo</div>
-
-      <p class="descricao">
-        O <strong>Coquette Hub</strong> é um script muito OP para Brookhaven RP, oferecendo menus de administração avançados e diversas funções de trollagem. 
-        Ele é bastante popular na comunidade Roblox e ideal para quem quer explorar o jogo com recursos extras e se divertir com amigos.
-      </p>
-
-      <button class="btn" onclick="copiarScript(event)" aria-label="Copiar script">Copiar Script</button>
-
-      <textarea id="script" style="display:none;">
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()
-      </textarea>
-    </div>
-
-  </div>
-</main>
-
-<footer>
-  &copy; 2026 — ScriptHub BR
-</footer>
+  /* Animação de entrada dos cards */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeIn 0.5s ease forwards; }
+</style>
 
 <script>
 function toggleCard(card) {
+  // Fecha outros cards se quiser um efeito sanfona (opcional)
+  // document.querySelectorAll('.card').forEach(c => { if(c !== card) c.classList.remove('active'); });
   card.classList.toggle("active");
 }
 
 function copiarScript(event) {
   event.stopPropagation();
-  const script = document.getElementById("script").value;
-  navigator.clipboard.writeText(script).then(() => {
-    alert("✅ Script copiado com sucesso!");
-  }).catch(err => {
-    alert("❌ Erro ao copiar script: " + err);
+  const btn = event.currentTarget;
+  // Pega o conteúdo do textarea que está dentro do MESMO card do botão clicado
+  const scriptText = btn.parentElement.querySelector("textarea").value;
+
+  navigator.clipboard.writeText(scriptText).then(() => {
+    const originalText = btn.innerText;
+    btn.innerText = "✅ Copiado!";
+    btn.classList.add("success");
+
+    setTimeout(() => {
+      btn.innerText = originalText;
+      btn.classList.remove("success");
+    }, 2000);
   });
 }
 </script>
-
-</body>
-</html>
 
