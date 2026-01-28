@@ -29,7 +29,6 @@
       overflow-x: hidden;
     }
 
-    /* Header Adaptável */
     header {
       background: rgba(26, 26, 34, 0.8);
       backdrop-filter: blur(10px);
@@ -52,7 +51,6 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Layout Responsivo */
     main { 
       padding: 40px 5%; 
       max-width: 1200px; 
@@ -66,14 +64,12 @@
       padding-left: 15px; 
     }
 
-    /* Grid que muda conforme o dispositivo */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 25px;
     }
 
-    /* Card Premium */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -90,10 +86,9 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--primary-glow);
     }
 
-    /* Ajuste da Imagem Adaptável */
     .card img {
       width: 100%;
-      aspect-ratio: 16 / 9; /* Mantém proporção de cinema */
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       border-bottom: 1px solid var(--border);
     }
@@ -115,7 +110,6 @@
       font-weight: 700;
     }
 
-    /* Área do Código */
     .code-container {
       background: var(--code-bg);
       border-radius: 8px;
@@ -126,16 +120,15 @@
 
     .code-container code {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 11px;
       color: #888;
       display: block;
       word-break: break-all;
-      max-height: 50px;
+      max-height: 45px;
       overflow: hidden;
       mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
     }
 
-    /* Botão */
     .btn-copy {
       width: 100%;
       background: var(--primary);
@@ -155,12 +148,10 @@
     .btn-copy:hover { background: #5876e6; }
     .btn-copy.copied { background: #28a745 !important; }
 
-    /* Media Queries para Mobile */
     @media (max-width: 480px) {
       main { padding: 25px 5%; }
       h2 { font-size: 22px; }
-      .grid { grid-template-columns: 1fr; } /* Força 1 coluna no celular */
-      header h1 { font-size: 18px; }
+      .grid { grid-template-columns: 1fr; }
     }
 
     footer {
@@ -170,7 +161,6 @@
       background: #0d0d12;
       color: var(--text-dim);
       border-top: 1px solid var(--border);
-      font-size: 14px;
     }
   </style>
 </head>
@@ -179,7 +169,7 @@
 <header>
   <h1>ScriptHub<span style="color:white">BR</span></h1>
   <nav>
-    <a href="#" style="color:var(--primary); text-decoration:none; font-weight:600; font-size: 14px;">Explorar</a>
+    <a href="#" style="color:var(--primary); text-decoration:none; font-weight:600;">Explorar</a>
   </nav>
 </header>
 
@@ -199,25 +189,23 @@
         </div>
 
         <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md\'))()')">
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
           Copiar Script
         </button>
       </div>
     </div>
 
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=500&auto=format&fit=crop" alt="Outro Script">
+      <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=500&auto=format&fit=crop" alt="Blox Fruits">
       <div class="card-content">
-        <span class="meta-badge">Farm • Auto</span>
-        <h3>Blox Fruits Hub</h3>
-        <p style="font-size: 14px; color: var(--text-dim);">Auto-farm de level, maestria e busca automática de frutas raras.</p>
+        <span class="meta-badge">Auto Farm • Mobile/PC</span>
+        <h3>BlueX Hub - Blox Fruits</h3>
+        <p style="font-size: 14px; color: var(--text-dim);">Script completo com Auto Farm Level, Sea Events, Fruit Finder e interface otimizada para dispositivos móveis.</p>
 
         <div class="code-container">
-          <code>loadstring(game:HttpGet("https://api.scripts.com/blox"))()</code>
+          <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()</code>
         </div>
 
-        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://api.scripts.com/blox\'))()')">
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua\'))()')">
           Copiar Script
         </button>
       </div>
@@ -234,10 +222,7 @@ function copyScript(btn, text) {
   navigator.clipboard.writeText(text).then(() => {
     const originalContent = btn.innerHTML;
     btn.classList.add('copied');
-    btn.innerHTML = `
-      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-      Copiado!
-    `;
+    btn.innerHTML = 'Copiado!';
     
     setTimeout(() => {
       btn.classList.remove('copied');
