@@ -1,54 +1,213 @@
-<style>
-  /* ... (mantenha seu CSS original e adicione/ajuste estes abaixo) ... */
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>ScriptHub BR — Premium Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-  .card {
-    background: rgba(27, 27, 34, 0.8);
-    backdrop-filter: blur(5px); /* Efeito de vidro */
-    border: 1px solid #333;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  }
+  <style>
+    :root {
+      --primary: #6c8cff;
+      --primary-glow: rgba(108, 140, 255, 0.3);
+      --bg-dark: #0a0a0c;
+      --card-bg: #16161d;
+      --border: #2a2a33;
+      --text-main: #eee;
+      --text-dim: #aaa;
+      --code-bg: #0d0d12;
+    }
 
-  .card:hover {
-    border-color: #6c8cff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-  }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
 
-  /* Estilo do Botão quando copiado */
-  .btn.success {
-    background: #28a745 !important;
-  }
+    /* Header Estilizado */
+    header {
+      background: rgba(26, 26, 34, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
 
-  /* Animação de entrada dos cards */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .card { animation: fadeIn 0.5s ease forwards; }
-</style>
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #6c8cff, #a2b5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Grid e Layout */
+    main { padding: 40px 5%; max-width: 1200px; margin: auto; }
+    h2 { font-size: 28px; margin-bottom: 30px; border-left: 4px solid var(--primary); padding-left: 15px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    /* Card Premium */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--primary-glow);
+    }
+
+    .card-content { padding: 20px; }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 { margin: 10px 0; font-size: 20px; color: var(--primary); }
+
+    .meta-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(108, 140, 255, 0.1);
+      border: 1px solid var(--primary-glow);
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Área do Script */
+    .code-container {
+      background: var(--code-bg);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 15px 0;
+      border: 1px solid #1f1f27;
+      position: relative;
+    }
+
+    .code-container code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #888;
+      display: block;
+      word-break: break-all;
+      max-height: 60px;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    }
+
+    /* Botão de Cópia Interativo */
+    .btn-copy {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 0.2s;
+    }
+
+    .btn-copy:hover { background: #5876e6; }
+    .btn-copy.copied { background: #28a745 !important; }
+
+    footer {
+      margin-top: 60px;
+      padding: 40px;
+      text-align: center;
+      background: #0d0d12;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ScriptHub<span style="color:white">BR</span></h1>
+  <nav>
+    <a href="#" style="color:var(--primary); text-decoration:none; font-weight:600;">Explorar</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Scripts Populares</h2>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-content">
+        <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=697be64e&is=697a94ce&hm=2bb5d4d849b710dc151e07fbb09f09384d8f650cca1401bc2e3dfdbe8831d296&" alt="Brookhaven">
+        
+        <span class="meta-badge">Troll • Online</span>
+        <h3>Brookhaven RP Script</h3>
+        
+        <p style="font-size: 14px; color: var(--text-dim);">Coquette Hub: O melhor menu de administração e trollagem para Brookhaven.</p>
+
+        <div class="code-container">
+          <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/..."))()</code>
+        </div>
+
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md\'))()')">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+          Copiar Script
+        </button>
+      </div>
+    </div>
+    </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 — ScriptHub BR • Developed with Passion</p>
+</footer>
 
 <script>
-function toggleCard(card) {
-  // Fecha outros cards se quiser um efeito sanfona (opcional)
-  // document.querySelectorAll('.card').forEach(c => { if(c !== card) c.classList.remove('active'); });
-  card.classList.toggle("active");
-}
-
-function copiarScript(event) {
-  event.stopPropagation();
-  const btn = event.currentTarget;
-  // Pega o conteúdo do textarea que está dentro do MESMO card do botão clicado
-  const scriptText = btn.parentElement.querySelector("textarea").value;
-
-  navigator.clipboard.writeText(scriptText).then(() => {
-    const originalText = btn.innerText;
-    btn.innerText = "✅ Copiado!";
-    btn.classList.add("success");
-
+function copyScript(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = `
+      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+      Copiado!
+    `;
+    
     setTimeout(() => {
-      btn.innerText = originalText;
-      btn.classList.remove("success");
+      btn.classList.remove('copied');
+      btn.innerHTML = originalText;
     }, 2000);
   });
 }
 </script>
+
+</body>
+</html>
 
