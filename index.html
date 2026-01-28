@@ -64,6 +64,7 @@
       border:1px solid #2a2a33;
       border-radius:10px;
       padding:15px;
+      cursor:pointer;
       transition:transform 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -89,6 +90,15 @@
       margin-bottom:10px;
     }
 
+    .descricao, .btn {
+      display:none; /* escondidos por padrão */
+    }
+
+    .card.active .descricao,
+    .card.active .btn {
+      display:block; /* aparecem quando o card é clicado */
+    }
+
     .descricao {
       font-size:14px;
       color:#ddd;
@@ -97,7 +107,6 @@
     }
 
     .btn {
-      display:block;
       width:100%;
       text-align:center;
       padding:10px;
@@ -140,7 +149,7 @@
   <div class="grid">
 
     <!-- CARD DO SCRIPT -->
-    <div class="card">
+    <div class="card" onclick="toggleCard(this)">
       <img src="https://placehold.co/600x340/1b1b22/6c8cff?text=Brookhaven+RP" alt="Brookhaven RP">
       <h3>Brookhaven RP Script</h3>
       <div class="meta">Categoria: troll • Status: Ativo</div>
@@ -152,7 +161,7 @@
       </p>
 
       <!-- BOTÃO COPIAR -->
-      <button class="btn" onclick="copiarScript()" aria-label="Copiar script">Copiar Script</button>
+      <button class="btn" onclick="copiarScript(event)" aria-label="Copiar script">Copiar Script</button>
 
       <!-- SCRIPT (mantido escondido) -->
       <textarea id="script" style="display:none;">
@@ -168,7 +177,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/r
 </footer>
 
 <script>
-function copiarScript() {
+function toggleCard(card) {
+  card.classList.toggle("active");
+}
+
+function copiarScript(event) {
+  event.stopPropagation(); // evita fechar o card ao clicar no botão
   const script = document.getElementById("script").value;
   navigator.clipboard.writeText(script).then(() => {
     alert("✅ Script copiado com sucesso!");
