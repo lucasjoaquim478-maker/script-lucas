@@ -183,14 +183,10 @@
         <span class="meta-badge">Troll • Online</span>
         <h3>Brookhaven RP Script</h3>
         <p style="font-size: 14px; color: var(--text-dim);">Coquette Hub: O melhor menu de administração e trollagem para Brookhaven.</p>
-
         <div class="code-container">
           <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()</code>
         </div>
-
-        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md\'))()')">
-          Copiar Script
-        </button>
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md\'))()')">Copiar Script</button>
       </div>
     </div>
 
@@ -199,15 +195,24 @@
       <div class="card-content">
         <span class="meta-badge">Auto Farm • Mobile/PC</span>
         <h3>BlueX Hub - Blox Fruits</h3>
-        <p style="font-size: 14px; color: var(--text-dim);">Script completo com Auto Farm Level, Sea Events, Fruit Finder e interface otimizada para dispositivos móveis.</p>
-
+        <p style="font-size: 14px; color: var(--text-dim);">Script completo com Auto Farm Level, Sea Events, Fruit Finder e interface otimizada.</p>
         <div class="code-container">
           <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()</code>
         </div>
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua\'))()')">Copiar Script</button>
+      </div>
+    </div>
 
-        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua\'))()')">
-          Copiar Script
-        </button>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1635326445033-0761bb3ad823?q=80&w=500&auto=format&fit=crop" alt="Doors Script">
+      <div class="card-content">
+        <span class="meta-badge">Utility • Doors</span>
+        <h3>MSPAINT - Doors Hub</h3>
+        <p style="font-size: 14px; color: var(--text-dim);">Visualização de entidades, auto-interação e modificadores de iluminação para Doors.</p>
+        <div class="code-container">
+          <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua"))()</code>
+        </div>
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua\'))()')">Copiar Script</button>
       </div>
     </div>
   </div>
@@ -223,7 +228,6 @@ function copyScript(btn, text) {
     const originalContent = btn.innerHTML;
     btn.classList.add('copied');
     btn.innerHTML = 'Copiado!';
-    
     setTimeout(() => {
       btn.classList.remove('copied');
       btn.innerHTML = originalContent;
