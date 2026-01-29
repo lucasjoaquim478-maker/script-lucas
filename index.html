@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ScriptHub BR — Premium Interface</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>ScriptHub BR — Ultimate Interface</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     :root {
       --primary: #6c8cff;
-      --primary-glow: rgba(108, 140, 255, 0.3);
-      --bg-dark: #0a0a0c;
-      --card-bg: #16161d;
-      --border: #2a2a33;
-      --text-main: #eee;
-      --text-dim: #aaa;
-      --code-bg: #0d0d12;
+      --primary-glow: rgba(108, 140, 255, 0.2);
+      --bg-dark: #050507;
+      --card-bg: #0f0f13;
+      --border: #1f1f27;
+      --text-main: #ffffff;
+      --text-dim: #94a3b8;
+      --accent: #a2b5ff;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; transition: all 0.2s ease; }
 
     body {
       margin: 0;
@@ -26,216 +27,296 @@
       background: var(--bg-dark);
       color: var(--text-main);
       line-height: 1.6;
-      overflow-x: hidden;
+      min-height: 100vh;
     }
 
+    /* Header & Blur Background */
     header {
-      background: rgba(26, 26, 34, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 15px 5%;
+      background: rgba(5, 5, 7, 0.8);
+      backdrop-filter: blur(12px);
+      padding: 20px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       border-bottom: 1px solid var(--border);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, #6c8cff, #a2b5ff);
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    main { 
-      padding: 40px 5%; 
-      max-width: 1200px; 
-      margin: auto; 
+    /* Search & Filters */
+    .controls {
+      margin: 40px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    h2 { 
-      font-size: 28px; 
-      margin-bottom: 30px; 
-      border-left: 4px solid var(--primary); 
-      padding-left: 15px; 
+    .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
     }
+
+    .search-box input {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 15px 15px 15px 45px;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 8px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .tag.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Grid & Cards */
+    main { padding: 0 5% 60px; max-width: 1300px; margin: auto; }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
     }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
+      position: relative;
     }
 
     .card:hover {
-      transform: translateY(-8px);
       border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--primary-glow);
+      transform: translateY(-5px);
     }
 
-    .card img {
+    .card-img {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 180px;
       object-fit: cover;
-      border-bottom: 1px solid var(--border);
+      opacity: 0.8;
     }
 
-    .card-content { padding: 20px; flex-grow: 1; }
+    .card-content { padding: 24px; }
 
-    .card h3 { margin: 10px 0; font-size: 20px; color: var(--primary); }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
 
-    .meta-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      background: rgba(108, 140, 255, 0.1);
-      border: 1px solid var(--primary-glow);
-      border-radius: 20px;
-      font-size: 11px;
-      color: var(--primary);
-      margin-bottom: 12px;
-      text-transform: uppercase;
+    .badge {
+      font-size: 10px;
       font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(108, 140, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
     }
 
-    .code-container {
-      background: var(--code-bg);
-      border-radius: 8px;
-      padding: 12px;
-      margin: 15px 0;
-      border: 1px solid #1f1f27;
-    }
-
-    .code-container code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: #888;
-      display: block;
-      word-break: break-all;
-      max-height: 45px;
-      overflow: hidden;
-      mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-    }
+    .card h3 { margin: 0 0 10px; font-size: 20px; }
+    .card p { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; height: 42px; overflow: hidden; }
 
     .btn-copy {
       width: 100%;
-      background: var(--primary);
-      color: white;
+      background: #fff;
+      color: #000;
       border: none;
       padding: 14px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: 0.2s;
+      gap: 10px;
     }
 
-    .btn-copy:hover { background: #5876e6; }
-    .btn-copy.copied { background: #28a745 !important; }
+    .btn-copy:hover { background: var(--primary); color: white; }
+    .btn-copy.copied { background: #10b981 !important; color: white; }
 
-    @media (max-width: 480px) {
-      main { padding: 25px 5%; }
-      h2 { font-size: 22px; }
-      .grid { grid-template-columns: 1fr; }
-    }
-
+    /* Footer */
     footer {
-      margin-top: 60px;
       padding: 40px;
       text-align: center;
-      background: #0d0d12;
-      color: var(--text-dim);
       border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>ScriptHub<span style="color:white">BR</span></h1>
-  <nav>
-    <a href="#" style="color:var(--primary); text-decoration:none; font-weight:600;">Explorar</a>
-  </nav>
+  <div class="logo">ScriptHub<span style="color:#fff">BR</span></div>
+  <div class="tag" style="border-color: var(--primary); color: var(--primary)">v2.0 Premium</div>
 </header>
 
 <main>
-  <h2>Scripts Populares</h2>
-
-  <div class="grid">
-    <div class="card">
-      <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=697be64e&is=697a94ce&hm=2bb5d4d849b710dc151e07fbb09f09384d8f650cca1401bc2e3dfdbe8831d296&" alt="Brookhaven">
-      <div class="card-content">
-        <span class="meta-badge">Troll • Online</span>
-        <h3>Brookhaven RP Script</h3>
-        <p style="font-size: 14px; color: var(--text-dim);">Coquette Hub: O melhor menu de administração e trollagem para Brookhaven.</p>
-        <div class="code-container">
-          <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()</code>
-        </div>
-        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md\'))()')">Copiar Script</button>
-      </div>
+  <div class="controls">
+    <div class="search-box">
+      <i data-lucide="search"></i>
+      <input type="text" id="searchInput" placeholder="Buscar script ou jogo...">
     </div>
-
-    <div class="card">
-      <img src="https://cdn.discordapp.com/attachments/1449143048880525354/1466221615628161275/cGc.png?ex=697bf4ca&is=697aa34a&hm=f7b90cf5b989672bd77876f1f8b8d6a6f70fd88b0e41711262ebb0ad414bbc2b&" alt="BlueX Hub Blox Fruits">
-      <div class="card-content">
-        <span class="meta-badge">Auto Farm • Mobile/PC</span>
-        <h3>BlueX Hub - Blox Fruits</h3>
-        <p style="font-size: 14px; color: var(--text-dim);">Script completo com Auto Farm Level, Sea Events, Fruit Finder e interface otimizada.</p>
-        <div class="code-container">
-          <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()</code>
-        </div>
-        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua\'))()')">Copiar Script</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1635326445033-0761bb3ad823?q=80&w=500&auto=format&fit=crop" alt="Doors Script">
-      <div class="card-content">
-        <span class="meta-badge">Utility • Doors</span>
-        <h3>MSPAINT - Doors Hub</h3>
-        <p style="font-size: 14px; color: var(--text-dim);">Visualização de entidades, auto-interação e modificadores de iluminação para Doors.</p>
-        <div class="code-container">
-          <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua"))()</code>
-        </div>
-        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua\'))()')">Copiar Script</button>
-      </div>
+    
+    <div class="filter-tags" id="filterTags">
+      <div class="tag active" data-filter="all">Todos</div>
+      <div class="tag" data-filter="farm">Auto Farm</div>
+      <div class="tag" data-filter="troll">Troll</div>
+      <div class="tag" data-filter="utility">Utilidade</div>
     </div>
   </div>
+
+  <div class="grid" id="scriptGrid">
+    </div>
 </main>
 
 <footer>
-  <p>&copy; 2026 — ScriptHub BR • Developed with Passion</p>
+  <p>&copy; 2026 ScriptHub BR • A elite dos scripts</p>
 </footer>
 
 <script>
-function copyScript(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    const originalContent = btn.innerHTML;
-    btn.classList.add('copied');
-    btn.innerHTML = 'Copiado!';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = originalContent;
-    }, 2000);
+  // Banco de Dados de Scripts
+  const scripts = [
+    {
+      title: "Brookhaven RP",
+      category: "troll",
+      desc: "Coquette Hub: O melhor menu de administração e trollagem para Brookhaven.",
+      img: "https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=697be64e&is=697a94ce&hm=2bb5d4d849b710dc151e07fbb09f09384d8f650cca1401bc2e3dfdbe8831d296&",
+      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md'))()"
+    },
+    {
+      title: "Blox Fruits",
+      category: "farm",
+      desc: "BlueX Hub: Farm automático de level, itens e Sea Events otimizados.",
+      img: "https://cdn.discordapp.com/attachments/1449143048880525354/1466221615628161275/cGc.png?ex=697bf4ca&is=697aa34a&hm=f7b90cf5b989672bd77876f1f8b8d6a6f70fd88b0e41711262ebb0ad414bbc2b&",
+      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua'))()"
+    },
+    {
+      title: "Doors - MSPAINT",
+      category: "utility",
+      desc: "Visualize entidades, auto-interação e veja através das paredes.",
+      img: "https://images.unsplash.com/photo-1635326445033-0761bb3ad823?q=80&w=500&auto=format&fit=crop",
+      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua'))()"
+    }
+  ];
+
+  const grid = document.getElementById('scriptGrid');
+  const searchInput = document.getElementById('searchInput');
+  const tags = document.querySelectorAll('.tag');
+
+  // Renderizar Cards
+  function renderScripts(filter = 'all', search = '') {
+    grid.innerHTML = '';
+    
+    const filtered = scripts.filter(s => {
+      const matchFilter = filter === 'all' || s.category === filter;
+      const matchSearch = s.title.toLowerCase().includes(search.toLowerCase());
+      return matchFilter && matchSearch;
+    });
+
+    filtered.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${s.img}" class="card-img" alt="${s.title}">
+        <div class="card-content">
+          <div class="meta">
+            <span class="badge">${s.category}</span>
+          </div>
+          <h3>${s.title}</h3>
+          <p>${s.desc}</p>
+          <button class="btn-copy" onclick="copyScript(this, \`${s.code}\`)">
+            <i data-lucide="copy" size="18"></i> Copiar Script
+          </button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+    lucide.createIcons();
+  }
+
+  // Copiar Função
+  function copyScript(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<i data-lucide="check"></i> Copiado!';
+      lucide.createIcons();
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = original;
+        lucide.createIcons();
+      }, 2000);
+    });
+  }
+
+  // Eventos
+  searchInput.addEventListener('input', (e) => renderScripts(document.querySelector('.tag.active').dataset.filter, e.target.value));
+
+  tags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      tags.forEach(t => t.classList.remove('active'));
+      tag.classList.add('active');
+      renderScripts(tag.dataset.filter, searchInput.value);
+    });
   });
-}
+
+  // Inicializar
+  renderScripts();
 </script>
 
 </body>
 </html>
-
