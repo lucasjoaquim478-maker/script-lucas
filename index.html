@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ScriptHub BR — Premium Interface</title>
-
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -76,7 +75,7 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
     }
@@ -139,11 +138,21 @@
       border-radius: 8px;
       font-weight: 700;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       transition: 0.2s;
     }
 
     .btn-copy:hover { background: #5876e6; }
     .btn-copy.copied { background: #28a745 !important; }
+
+    @media (max-width: 480px) {
+      main { padding: 25px 5%; }
+      h2 { font-size: 22px; }
+      .grid { grid-template-columns: 1fr; }
+    }
 
     footer {
       margin-top: 60px;
@@ -155,88 +164,73 @@
     }
   </style>
 </head>
-
 <body>
 
 <header>
   <h1>ScriptHub<span style="color:white">BR</span></h1>
+  <nav>
+    <a href="#" style="color:var(--primary); text-decoration:none; font-weight:600;">Explorar</a>
+  </nav>
 </header>
 
 <main>
   <h2>Scripts Populares</h2>
 
   <div class="grid">
-
-    <!-- Brookhaven -->
     <div class="card">
-      <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png" alt="Brookhaven">
+      <img src="https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=697be64e&is=697a94ce&hm=2bb5d4d849b710dc151e07fbb09f09384d8f650cca1401bc2e3dfdbe8831d296&" alt="Brookhaven">
       <div class="card-content">
         <span class="meta-badge">Troll • Online</span>
         <h3>Brookhaven RP Script</h3>
-        <p style="font-size:14px;color:var(--text-dim);">
-          Coquette Hub: menu de administração e trollagem.
-        </p>
+        <p style="font-size: 14px; color: var(--text-dim);">Coquette Hub: O melhor menu de administração e trollagem para Brookhaven.</p>
         <div class="code-container">
           <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md"))()</code>
         </div>
-        <button class="btn-copy" onclick="copyScript(this,'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md\'))()')">
-          Copiar Script
-        </button>
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md\'))()')">Copiar Script</button>
       </div>
     </div>
 
-    <!-- Blox Fruits -->
     <div class="card">
-      <img src="https://cdn.discordapp.com/attachments/1449143048880525354/1466221615628161275/cGc.png" alt="Blox Fruits">
+      <img src="https://cdn.discordapp.com/attachments/1449143048880525354/1466221615628161275/cGc.png?ex=697bf4ca&is=697aa34a&hm=f7b90cf5b989672bd77876f1f8b8d6a6f70fd88b0e41711262ebb0ad414bbc2b&" alt="BlueX Hub Blox Fruits">
       <div class="card-content">
-        <span class="meta-badge">Auto Farm</span>
+        <span class="meta-badge">Auto Farm • Mobile/PC</span>
         <h3>BlueX Hub - Blox Fruits</h3>
-        <p style="font-size:14px;color:var(--text-dim);">
-          Auto Farm, Sea Events e Fruit Finder.
-        </p>
+        <p style="font-size: 14px; color: var(--text-dim);">Script completo com Auto Farm Level, Sea Events, Fruit Finder e interface otimizada.</p>
         <div class="code-container">
           <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua"))()</code>
         </div>
-        <button class="btn-copy" onclick="copyScript(this,'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua\'))()')">
-          Copiar Script
-        </button>
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua\'))()')">Copiar Script</button>
       </div>
     </div>
 
-    <!-- DOORS (imagem trocada) -->
     <div class="card">
-      <img src="https://cdn.discordapp.com/attachments/1449143048880525354/1466223487306694798/b3guanBn.png" alt="Doors Script">
+      <img src="https://images.unsplash.com/photo-1635326445033-0761bb3ad823?q=80&w=500&auto=format&fit=crop" alt="Doors Script">
       <div class="card-content">
         <span class="meta-badge">Utility • Doors</span>
         <h3>MSPAINT - Doors Hub</h3>
-        <p style="font-size:14px;color:var(--text-dim);">
-          ESP, auto interação e melhorias visuais.
-        </p>
+        <p style="font-size: 14px; color: var(--text-dim);">Visualização de entidades, auto-interação e modificadores de iluminação para Doors.</p>
         <div class="code-container">
           <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua"))()</code>
         </div>
-        <button class="btn-copy" onclick="copyScript(this,'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua\'))()')">
-          Copiar Script
-        </button>
+        <button class="btn-copy" onclick="copyScript(this, 'loadstring(game:HttpGet(\'https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua\'))()')">Copiar Script</button>
       </div>
     </div>
-
   </div>
 </main>
 
 <footer>
-  <p>&copy; 2026 — ScriptHub BR</p>
+  <p>&copy; 2026 — ScriptHub BR • Developed with Passion</p>
 </footer>
 
 <script>
 function copyScript(btn, text) {
   navigator.clipboard.writeText(text).then(() => {
-    const original = btn.innerHTML;
-    btn.classList.add("copied");
-    btn.innerHTML = "Copiado!";
+    const originalContent = btn.innerHTML;
+    btn.classList.add('copied');
+    btn.innerHTML = 'Copiado!';
     setTimeout(() => {
-      btn.classList.remove("copied");
-      btn.innerHTML = original;
+      btn.classList.remove('copied');
+      btn.innerHTML = originalContent;
     }, 2000);
   });
 }
