@@ -1,26 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScriptHub BR — Premium Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --primary: #6c8cff;
+      --bg-dark: #050507;
+      --card-bg: #111116;
+      --border: #22222a;
+      --text-main: #ffffff;
+      --text-dim: #94a3b8;
+    }
+
+    * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 30px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+    .logo span { color: var(--primary); }
+
+    main { padding: 40px 5%; max-width: 1400px; margin: auto; }
+
+    .search-container { margin-bottom: 50px; text-align: center; }
+    #searchInput {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 18px 30px;
+      border-radius: 100px;
+      color: white;
+      width: 100%;
+      max-width: 600px;
+      font-size: 16px;
+      outline: none;
+    }
+    #searchInput:focus { border-color: var(--primary); box-shadow: 0 0 20px rgba(108, 140, 255, 0.2); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      border-color: var(--primary);
+    }
+
+    .card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid var(--border); }
+
+    .card-info { padding: 20px; text-align: center; }
+    .card-info h3 { margin: 0; font-size: 18px; }
+    .card-info span { font-size: 12px; color: var(--primary); font-weight: 700; text-transform: uppercase; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #16161f;
+      width: 100%;
+      max-width: 550px;
+      border-radius: 32px;
+      border: 1px solid var(--border);
+      position: relative;
+      animation: modalIn 0.4s ease-out;
+      overflow: hidden;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-header-img { width: 100%; height: 220px; object-fit: cover; }
+    .modal-body { padding: 30px; }
+    
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: rgba(0,0,0,0.5);
+      border: none; color: white;
+      width: 40px; height: 40px; border-radius: 50%;
+      cursor: pointer; z-index: 10;
+    }
+
+    .desc { color: var(--text-dim); margin: 15px 0 25px; font-size: 15px; }
+
+    .code-box {
+      background: #000;
+      padding: 15px;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #888;
+      border: 1px solid #222;
+      margin-bottom: 25px;
+      word-break: break-all;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .btn-copy {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 18px;
+      border-radius: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .btn-copy:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-copy.copied { background: #10b981; }
+
+    footer { padding: 50px; text-align: center; color: var(--text-dim); font-size: 14px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Script<span>Hub</span> BR</div>
+</header>
+
+<main>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Qual jogo você quer dominar hoje?">
+  </div>
+  <div class="grid" id="scriptGrid"></div>
+</main>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+    <img src="" id="modalImg" class="modal-header-img">
+    <div class="modal-body">
+      <span id="modalBadge"></span>
+      <h2 id="modalTitle" style="margin: 10px 0;"></h2>
+      <p id="modalDesc" class="desc"></p>
+      <div class="code-box" id="modalCode"></div>
+      <button class="btn-copy" id="copyBtn">
+        <i data-lucide="copy"></i> Copiar Script
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2026 ScriptHub BR — Design by AI</footer>
+
 <script>
-  // AQUI ESTAVA O ERRO: O array não estava fechado e tinha um objeto vazio
+  // Banco de Dados de Scripts
   const scripts = [
     {
       title: "Brookhaven RP",
       category: "Troll • Admin",
       desc: "O famoso Coquette Hub. Inclui ferramentas de trollagem, controle de veículos e animações exclusivas de administração.",
-      img: "https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=697be64e&is=697a94ce&hm=2bb5d4d849b710dc151e07fbb09f09384d8f650cca1401bc2e3dfdbe8831d296&",
+      img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1000",
       code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md'))()"
+    },
+    {
+      title: "Blox Fruits",
+      category: "Auto Farm • Raid",
+      desc: "Script completo para farm automático, auto-quest e sistema de busca de frutas raras pelo mapa.",
+      img: "https://images.unsplash.com/photo-1614466113819-74591739257d?auto=format&fit=crop&q=80&w=1000",
+      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Exemplo/BloxFruits/main/script.lua'))()"
     }
-    // Para adicionar mais, coloque uma vírgula após a "}" acima e crie um novo { }
   ];
 
   const grid = document.getElementById('scriptGrid');
   const modal = document.getElementById('modalOverlay');
+  const copyBtn = document.getElementById('copyBtn');
   let currentScriptCode = "";
 
+  // Renderiza os cards na tela
   function render(search = "") {
     grid.innerHTML = "";
-    // Filtra e renderiza os scripts
-    const filteredScripts = scripts.filter(s => s.title.toLowerCase().includes(search.toLowerCase()));
+    const filtered = scripts.filter(s => s.title.toLowerCase().includes(search.toLowerCase()));
     
-    filteredScripts.forEach(s => {
+    filtered.forEach(s => {
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
@@ -33,16 +231,15 @@
       card.onclick = () => openModal(s);
       grid.appendChild(card);
     });
-    
-    if (window.lucide) {
-        lucide.createIcons();
-    }
+    lucide.createIcons();
   }
 
   function openModal(s) {
     document.getElementById('modalImg').src = s.img;
     document.getElementById('modalTitle').innerText = s.title;
     document.getElementById('modalBadge').innerText = s.category;
+    document.getElementById('modalBadge').style.color = "var(--primary)";
+    document.getElementById('modalBadge').style.fontWeight = "700";
     document.getElementById('modalDesc').innerText = s.desc;
     document.getElementById('modalCode').innerText = s.code;
     currentScriptCode = s.code;
@@ -56,9 +253,8 @@
     document.body.style.overflow = 'auto';
   }
 
-  document.getElementById('copyBtn').onclick = function() {
-    if (!currentScriptCode) return;
-    
+  // Função de Copiar
+  copyBtn.onclick = function() {
     navigator.clipboard.writeText(currentScriptCode).then(() => {
       this.classList.add('copied');
       this.innerHTML = '<i data-lucide="check"></i> Script Copiado!';
@@ -71,10 +267,15 @@
     });
   };
 
+  // Busca em tempo real
   document.getElementById('searchInput').oninput = (e) => render(e.target.value);
   
+  // Fechar modal ao clicar fora
   modal.onclick = (e) => { if(e.target === modal) closeModal(); };
 
-  // Inicializa a renderização
+  // Inicialização
   render();
 </script>
+
+</body>
+</html>
