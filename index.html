@@ -12,11 +12,10 @@
       --primary: #6c8cff;
       --primary-hover: #8ba5ff;
       --bg-dark: #020205;
-      --card-bg: rgba(20, 20, 28, 0.6);
+      --card-bg: rgba(20, 20, 28, 0.65);
       --border: rgba(255, 255, 255, 0.08);
       --text-main: #ffffff;
       --text-dim: #a1a1aa;
-      --glass: rgba(255, 255, 255, 0.03);
     }
 
     * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -30,7 +29,7 @@
       line-height: 1.6;
     }
 
-    /* Background Video */
+    /* Video Background - Otimizado para Mobile */
     .video-background {
       position: fixed;
       top: 0; left: 0;
@@ -38,7 +37,6 @@
       z-index: -2;
       filter: brightness(0.4) contrast(1.1);
     }
-
     .video-background video {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -46,151 +44,126 @@
 
     #youtube-player-container { position: absolute; width: 1px; height: 1px; opacity: 0; }
 
-    /* Header Estilizado */
+    /* Header Responsivo */
     header {
-      padding: 25px 8%;
+      padding: 20px 5%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center; /* Centralizado no mobile */
       align-items: center;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(15px);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
     }
+    @media (min-width: 768px) {
+      header { justify-content: space-between; padding: 25px 8%; }
+    }
 
     .logo { 
-      font-size: 26px; 
+      font-size: 22px; 
       font-weight: 900; 
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
       text-transform: uppercase;
     }
     .logo span { color: var(--primary); text-shadow: 0 0 15px rgba(108, 140, 255, 0.5); }
 
-    main { padding: 60px 8%; max-width: 1400px; margin: auto; }
+    main { padding: 30px 5%; max-width: 1400px; margin: auto; }
+    @media (min-width: 768px) { main { padding: 60px 8%; } }
 
-    /* Barra de Pesquisa Hero */
-    .search-container { margin-bottom: 60px; position: relative; max-width: 700px; margin-left: auto; margin-right: auto; }
-    
+    /* Pesquisa Adaptável */
+    .search-container { margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
     #searchInput {
       background: var(--card-bg);
       border: 2px solid var(--border);
-      padding: 20px 35px;
-      border-radius: 20px;
+      padding: 16px 25px;
+      border-radius: 18px;
       color: white;
       width: 100%;
-      font-size: 18px;
+      font-size: 16px;
       outline: none;
       backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-    #searchInput:focus { 
-      border-color: var(--primary); 
-      background: rgba(20, 20, 28, 0.8);
-      box-shadow: 0 0 30px rgba(108, 140, 255, 0.15);
     }
 
-    /* Grid de Cards */
+    /* GRID RESPONSIVO: 1 coluna no celular, 2 no tablet, 3-4 no PC */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
-      animation: fadeInUp 0.8s ease;
+      grid-template-columns: 1fr; 
+      gap: 20px;
     }
+    @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 30px; } }
+    @media (min-width: 1440px) { .grid { grid-template-columns: repeat(4, 1fr); } }
 
     .card {
       background: var(--card-bg);
-      border-radius: 28px;
+      border-radius: 24px;
       overflow: hidden;
       cursor: pointer;
       border: 1px solid var(--border);
       backdrop-filter: blur(8px);
-      position: relative;
     }
+    .card:hover { transform: translateY(-8px); border-color: var(--primary); }
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card-info { padding: 20px; }
+    .card-info h3 { margin: 0; font-size: 18px; }
 
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--primary);
-      background: rgba(30, 30, 45, 0.8);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    .card img { width: 100%; height: 210px; object-fit: cover; filter: saturate(1.2); }
-    
-    .card-info { padding: 25px; }
-    .card-info span { 
-      font-size: 11px; 
-      color: var(--primary); 
-      font-weight: 800; 
-      text-transform: uppercase; 
-      letter-spacing: 1px;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .card-info h3 { margin: 0; font-size: 20px; font-weight: 700; }
-
-    /* Volume Flutuante */
+    /* Controle de Volume Adaptável */
     .volume-control {
       position: fixed;
-      bottom: 30px; left: 30px;
+      bottom: 20px; left: 50%;
+      transform: translateX(-50%); /* Centralizado no celular */
       z-index: 1000;
       background: rgba(10, 10, 15, 0.9);
       backdrop-filter: blur(15px);
-      padding: 15px 25px;
-      border-radius: 20px;
+      padding: 12px 20px;
+      border-radius: 100px;
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
       border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    @media (min-width: 768px) {
+      .volume-control { left: 30px; transform: none; }
     }
 
-    .volume-control input[type="range"] {
-      width: 100px;
-      cursor: pointer;
-      accent-color: var(--primary);
-    }
-
-    /* Modal Estilizado */
+    /* Modal Adaptável */
     .modal-overlay {
       position: fixed; inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(20px);
-      display: none; justify-content: center; align-items: center;
-      z-index: 2000; padding: 20px;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(15px);
+      display: none; justify-content: center; align-items: flex-end; /* Abre de baixo no celular */
+      z-index: 2000;
     }
+    @media (min-width: 768px) { .modal-overlay { align-items: center; padding: 20px; } }
 
     .modal-content {
       background: #0f0f13; 
-      width: 100%; max-width: 600px;
-      border-radius: 35px; border: 1px solid var(--border);
-      overflow: hidden; animation: modalZoom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 100%; 
+      max-width: 600px;
+      border-radius: 30px 30px 0 0; /* Bordas arredondadas só em cima no mobile */
+      max-height: 90vh;
+      overflow-y: auto;
     }
+    @media (min-width: 768px) { .modal-content { border-radius: 35px; max-height: 85vh; } }
 
-    @keyframes modalZoom { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    .modal-body { padding: 40px; }
-    
+    .modal-body { padding: 25px; }
     .code-box {
-      background: #050505; padding: 20px; border-radius: 18px;
-      font-family: 'JetBrains Mono', monospace; font-size: 13px;
-      color: #71717a; border: 1px solid #1f1f23; margin: 25px 0;
-      word-break: break-all; position: relative;
+      background: #050505; padding: 15px; border-radius: 15px;
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      color: #71717a; border: 1px solid #1f1f23; margin: 20px 0;
+      word-break: break-all;
     }
 
     .btn-copy {
       width: 100%; background: var(--primary); color: white;
-      border: none; padding: 20px; border-radius: 20px;
+      border: none; padding: 18px; border-radius: 18px;
       font-weight: 800; cursor: pointer; display: flex;
-      align-items: center; justify-content: center; gap: 12px;
-      font-size: 16px;
+      align-items: center; justify-content: center; gap: 10px;
     }
-    .btn-copy:hover { background: var(--primary-hover); transform: scale(1.02); }
 
-    footer { padding: 60px; text-align: center; color: var(--text-dim); font-size: 14px; opacity: 0.6; }
-
+    footer { padding: 40px 20px; text-align: center; color: var(--text-dim); font-size: 12px; }
   </style>
 </head>
 <body onclick="unlockAudio()">
@@ -214,62 +187,37 @@
 
 <main>
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="O que vamos executar hoje?">
+    <input type="text" id="searchInput" placeholder="Buscar script...">
   </div>
   <div class="grid" id="scriptGrid"></div>
 </main>
 
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-content">
-    <img src="" id="modalImg" style="width:100%; height:240px; object-fit:cover;">
+    <img src="" id="modalImg" style="width:100%; height:200px; object-fit:cover;">
     <div class="modal-body">
-      <span id="modalBadge"></span>
-      <h2 id="modalTitle" style="margin:10px 0; font-size:28px;"></h2>
-      <p id="modalDesc" style="color:var(--text-dim);"></p>
+      <span id="modalBadge" style="font-size:10px; color:var(--primary); font-weight:800; text-transform:uppercase;"></span>
+      <h2 id="modalTitle" style="margin:5px 0; font-size:24px;"></h2>
+      <p id="modalDesc" style="color:var(--text-dim); font-size:14px;"></p>
       <div class="code-box" id="modalCode"></div>
       <button class="btn-copy" id="copyBtn"><i data-lucide="copy"></i> Copiar Script</button>
-      <button onclick="closeModal()" style="width:100%; background:transparent; border:none; color:var(--text-dim); margin-top:15px; cursor:pointer; font-weight:600;">Fechar</button>
+      <button onclick="closeModal()" style="width:100%; background:transparent; border:none; color:var(--text-dim); padding:15px; cursor:pointer;">Voltar</button>
     </div>
   </div>
 </div>
 
-<footer>&copy; 2026 ScriptHub BR — Interface Premium v2.0</footer>
+<footer>ScriptHub BR &copy; 2026<br>Mobile, Laptop & Desktop Optimized</footer>
 
 <script src="https://www.youtube.com/iframe_api"></script>
-
 <script>
   let player;
   let audioUnlocked = false;
 
   const scripts = [
-    {
-      title: "Brookhaven RP",
-      category: "Troll • Conquete Hub",
-      desc: "O hub de trollagem mais completo. Inclui comandos de admin, animações e controle total de veículos.",
-      img: "https://cdn.discordapp.com/attachments/1446891375403733022/1466206065782948156/MzIxOC5wbmc.png?ex=698b0f8e&is=6989be0e&hm=c118af5f5701dc52cfc033708f78c6ccb5a2a42047eed99936a45c2604eb9908&",
-      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md'))()"
-    },
-    {
-      title: "Blox Fruits",
-      category: "Farm • BlueX Hub",
-      desc: "Otimizado para mobile. Auto-farm ultra rápido, auto-quest e localizador de frutas míticas.",
-      img: "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?q=80&w=800",
-      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua'))()"
-    },
-    {
-      title: "Doors Hub",
-      category: "Utility • Mspaint",
-      desc: "Veja entidades através das paredes, pule salas automaticamente e nunca mais fique no escuro.",
-      img: "https://images.unsplash.com/photo-1635326445033-0761bb3ad823?q=80&w=800",
-      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua'))()"
-    },
-    {
-      title: "Gravity Hub",
-      category: "Combat • Blox Fruits",
-      desc: "Sistema de Fast Attack avançado e kill aura para farm de boss sem levar dano.",
-      img: "https://images.unsplash.com/photo-1605898335722-142277045df2?q=80&w=800",
-      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/GravityHub/Main/main/loader.lua'))()"
-    }
+    { title: "Brookhaven RP", category: "Troll", desc: "Hub completo de ferramentas.", img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600", code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md'))()" },
+    { title: "Blox Fruits", category: "Auto Farm", desc: "Melhor farm mobile atual.", img: "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?w=600", code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua'))()" },
+    { title: "Doors Hub", category: "Utility", desc: "ESP e Auto-skip puzzles.", img: "https://images.unsplash.com/photo-1635326445033-0761bb3ad823?w=600", code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua'))()" },
+    { title: "Gravity Hub", category: "Combat", desc: "Fast Attack & Kill Aura.", img: "https://images.unsplash.com/photo-1605898335722-142277045df2?w=600", code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/GravityHub/Main/main/loader.lua'))()" }
   ];
 
   function onYouTubeIframeAPIReady() {
@@ -280,12 +228,7 @@
     });
   }
 
-  function unlockAudio() {
-    if(!audioUnlocked && player) {
-      player.playVideo();
-      audioUnlocked = true;
-    }
-  }
+  function unlockAudio() { if(!audioUnlocked && player) { player.playVideo(); audioUnlocked = true; } }
 
   const volumeSlider = document.getElementById('volumeSlider');
   const volIcon = document.getElementById('volIcon');
@@ -310,13 +253,7 @@
     scripts.filter(s => s.title.toLowerCase().includes(search.toLowerCase())).forEach(s => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.innerHTML = `
-        <img src="${s.img}">
-        <div class="card-info">
-          <span>${s.category}</span>
-          <h3>${s.title}</h3>
-        </div>
-      `;
+      card.innerHTML = `<img src="${s.img}"><div class="card-info"><span>${s.category}</span><h3>${s.title}</h3></div>`;
       card.onclick = () => {
         document.getElementById('modalImg').src = s.img;
         document.getElementById('modalTitle').innerText = s.title;
@@ -324,16 +261,21 @@
         document.getElementById('modalDesc').innerText = s.desc;
         document.getElementById('modalCode').innerText = s.code;
         document.getElementById('modalOverlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
       };
       grid.appendChild(card);
     });
     lucide.createIcons();
   }
 
-  function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
+  function closeModal() { 
+    document.getElementById('modalOverlay').style.display = 'none'; 
+    document.body.style.overflow = 'auto';
+  }
+
   document.getElementById('copyBtn').onclick = function() {
     navigator.clipboard.writeText(document.getElementById('modalCode').innerText);
-    this.innerText = "Copiado com Sucesso!";
+    this.innerText = "Copiado!";
     setTimeout(() => { this.innerHTML = '<i data-lucide="copy"></i> Copiar Script'; lucide.createIcons(); }, 2000);
   };
 
