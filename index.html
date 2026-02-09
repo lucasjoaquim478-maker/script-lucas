@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -118,9 +118,10 @@
       border: none; color: white;
       width: 40px; height: 40px; border-radius: 50%;
       cursor: pointer; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .desc { color: var(--text-dim); margin: 15px 0 25px; font-size: 15px; }
+    .desc { color: var(--text-dim); margin: 15px 0 25px; font-size: 15px; line-height: 1.5; }
 
     .code-box {
       background: #000;
@@ -132,8 +133,6 @@
       border: 1px solid #222;
       margin-bottom: 25px;
       word-break: break-all;
-      max-height: 100px;
-      overflow-y: auto;
     }
 
     .btn-copy {
@@ -168,6 +167,7 @@
   <div class="search-container">
     <input type="text" id="searchInput" placeholder="Qual jogo você quer dominar hoje?">
   </div>
+
   <div class="grid" id="scriptGrid"></div>
 </main>
 
@@ -176,10 +176,12 @@
     <button class="modal-close" onclick="closeModal()"><i data-lucide="x"></i></button>
     <img src="" id="modalImg" class="modal-header-img">
     <div class="modal-body">
-      <span id="modalBadge"></span>
+      <span id="modalBadge" style="color:var(--primary); font-weight:700; font-size:12px; text-transform:uppercase;"></span>
       <h2 id="modalTitle" style="margin: 10px 0;"></h2>
       <p id="modalDesc" class="desc"></p>
+      
       <div class="code-box" id="modalCode"></div>
+      
       <button class="btn-copy" id="copyBtn">
         <i data-lucide="copy"></i> Copiar Script
       </button>
@@ -190,41 +192,48 @@
 <footer>&copy; 2026 ScriptHub BR — Design by AI</footer>
 
 <script>
-  // Banco de Dados de Scripts
   const scripts = [
     {
       title: "Brookhaven RP",
       category: "Troll • Admin",
       desc: "O famoso Coquette Hub. Inclui ferramentas de trollagem, controle de veículos e animações exclusivas de administração.",
-      img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1000",
+      img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop",
       code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Daivd977/Coquettekk/refs/heads/main/README.md'))()"
     },
     {
-      title: "Blox Fruits/Gravidade hub",
-      category: "Auto Farm • ",
-      desc: "",
-      img: "https://cdn.discordapp.com/attachments/1446891375403733022/1466423739972321597/Zw.png?ex=6985eb88&is=69849a08&hm=8aec5fdf7a24226aa64913c676720677c258680059cd5a6717bfece1fe942b2f&",
-      code: "loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua"))()
-
-Gravity hub MAIN"
+      title: "Blox Fruits",
+      category: "Auto Farm • Mobile",
+      desc: "BlueX Hub: Totalmente otimizado para não causar lag. Auto-farm de level, maestria e coleta automática de frutas.",
+      img: "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?q=80&w=500&auto=format&fit=crop",
+      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/Main.lua'))()"
+    },
+    {
+      title: "Doors Hub",
+      category: "Visuals • Utility",
+      desc: "Mspaint: Veja entidades através das paredes, auto-skip de puzzles e luz infinita nas salas escuras.",
+      img: "https://images.unsplash.com/photo-1635326445033-0761bb3ad823?q=80&w=500&auto=format&fit=crop",
+      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/mspaint-org/mspaint/main/source.lua'))()"
+    },
+    {
+      title: "Blox Fruits (Gravidade)",
+      category: "Auto Farm Pega Tudo",
+      desc: "O Gravidade Hub para Blox Fruits se destaca por um sistema de 'Fast Attack' otimizado, que permite matar NPCs instantaneamente. Conta com menu intuitivo para localizar frutas raras.",
+      img: "https://images.unsplash.com/photo-1605898335722-142277045df2?q=80&w=500&auto=format&fit=crop",
+      code: "loadstring(game:HttpGet('https://raw.githubusercontent.com/GravityHub/Main/main/loader.lua'))()"
     }
   ];
 
   const grid = document.getElementById('scriptGrid');
   const modal = document.getElementById('modalOverlay');
-  const copyBtn = document.getElementById('copyBtn');
   let currentScriptCode = "";
 
-  // Renderiza os cards na tela
   function render(search = "") {
     grid.innerHTML = "";
-    const filtered = scripts.filter(s => s.title.toLowerCase().includes(search.toLowerCase()));
-    
-    filtered.forEach(s => {
+    scripts.filter(s => s.title.toLowerCase().includes(search.toLowerCase())).forEach(s => {
       const card = document.createElement('div');
       card.className = 'card';
       card.innerHTML = `
-        <img src="${s.img}" alt="${s.title}">
+        <img src="${s.img}">
         <div class="card-info">
           <span>${s.category}</span>
           <h3>${s.title}</h3>
@@ -240,8 +249,6 @@ Gravity hub MAIN"
     document.getElementById('modalImg').src = s.img;
     document.getElementById('modalTitle').innerText = s.title;
     document.getElementById('modalBadge').innerText = s.category;
-    document.getElementById('modalBadge').style.color = "var(--primary)";
-    document.getElementById('modalBadge').style.fontWeight = "700";
     document.getElementById('modalDesc').innerText = s.desc;
     document.getElementById('modalCode').innerText = s.code;
     currentScriptCode = s.code;
@@ -255,8 +262,7 @@ Gravity hub MAIN"
     document.body.style.overflow = 'auto';
   }
 
-  // Função de Copiar
-  copyBtn.onclick = function() {
+  document.getElementById('copyBtn').onclick = function() {
     navigator.clipboard.writeText(currentScriptCode).then(() => {
       this.classList.add('copied');
       this.innerHTML = '<i data-lucide="check"></i> Script Copiado!';
@@ -269,13 +275,12 @@ Gravity hub MAIN"
     });
   };
 
-  // Busca em tempo real
   document.getElementById('searchInput').oninput = (e) => render(e.target.value);
   
-  // Fechar modal ao clicar fora
   modal.onclick = (e) => { if(e.target === modal) closeModal(); };
 
-  // Inicialização
+  // Inicializa os ícones e o grid
+  lucide.createIcons();
   render();
 </script>
 
